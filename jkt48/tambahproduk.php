@@ -85,7 +85,7 @@ include 'session.php';
 
 form {
     margin-top:100px;
-    width:200%;
+    width:140%;
 }
 
 label {
@@ -130,39 +130,39 @@ button:hover {
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link text-white">
+                <a href="index.php" class="nav-link text-white">
                     <span class="icon">&#128202;</span>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="pesanan.php" class="nav-link text-white">
                     <span class="icon">&#128179;</span>
                     <span class="text">Kelola Pesanan</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white" >
+                <a href="manajemenproduk.php" class="nav-link active" >
                     <span class="icon">&#128722;</span>
                     <span class="text">Manajemen Products</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="manajemenpengguna.php" class="nav-link text-white">
                     <span class="icon">&#128101;</span>
                     <span class="text">Manajemen Pengguna</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="metodepembayaran.php" class="nav-link text-white">
                     <span class="icon">&#128202;</span>
                     <span class="text">Metode Pembayaran</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Kode diskon</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>
@@ -170,7 +170,7 @@ button:hover {
 
   <main>
 
-
+<h2 style="position:absolute; margin-top:30px;">Silahkan isi Form untuk menambahkan Produk</h2>
   <form method="POST" action="prosestambahproduk.php" enctype="multipart/form-data">
     <div class="form-group">
         <label for="nama_produk">Nama Produk:</label>
@@ -216,6 +216,7 @@ button:hover {
         <label for="harga_promo">Harga Promo:</label>
         <input type="text" class="form-control" id="harga_promo" name="harga_promo" >
     </div>
+    <p style="positon:absolute; margin-left:130px; margin-top:-20px;">*Harga promo tidak perlu diisi jika promo nonaktif/tidak promo</p>
     <button type="submit" class="btn btn-primary">Tambah</button>
 </form>
 

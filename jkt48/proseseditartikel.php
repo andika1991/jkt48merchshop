@@ -1,28 +1,28 @@
 <?php
-// Include file koneksi ke database
+
 include 'koneksi.php';
 
-// Cek apakah form telah disubmit
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil data dari form
+   
     $id_artikel = $_POST['id_artikel'];
     $judul = $_POST['judul'];
     $isi = $_POST['isi'];
 
-    // Proses upload foto banner
+
     if (isset($_FILES['gambar_artikel']) && $_FILES['gambar_artikel']['error'] == UPLOAD_ERR_OK) {
         $target_dir = "img/";
         $target_file = $target_dir . basename($_FILES["gambar_artikel"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if file already exists
+       
         if (file_exists($target_file)) {
             echo "Sorry, file already exists.";
             $uploadOk = 0;
         }
 
-        // Allow certain file formats
+      
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;

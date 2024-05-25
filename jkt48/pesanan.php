@@ -24,7 +24,7 @@ include 'session.php';
     padding-top: 20px;
     transition: width 0.3s;
     width: 250px;
-    height: auto; 
+    height: 100vh; 
 
 }
 
@@ -159,13 +159,13 @@ position:fixed;
                 </a>
             </li>
             <li>
-                <a href="pesanan.php" class="nav-link text-white">
+                <a href="pesanan.php" class="nav-link active" aria-current="page">
                     <span class="icon">&#128179;</span>
                     <span class="text">Kelola Pesanan</span>
                 </a>
             </li>
             <li>
-                <a href="manajemenproduk.php" class="nav-link active" aria-current="page">
+                <a href="manajemenproduk.php" class="nav-link text-white">
                     <span class="icon">&#128722;</span>
                     <span class="text">Manajemen Products</span>
                 </a>
@@ -185,7 +185,7 @@ position:fixed;
             <li>
                 <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Page</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>
@@ -193,60 +193,7 @@ position:fixed;
 
   <main>
 
-  <div class="tambahdata">
-  <i class="bi bi-plus-circle"></i>
-  <a href="tambahproduk.php" class="btn">Tambah Data</a> </div>
-  <div class="container mt-5">
-        <h2 class="mb-4">Daftar Produk</h2>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID Produk</th>
-                        <th>Nama Produk</th>
-                        <th>Foto Produk</th>
-                        <th>Kategori Produk</th>
-                        <th>Promo</th>
-                        <th>Harga Normal</th>
-                        <th>Harga Promo</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    include 'koneksi.php';
-
-                    $query = "SELECT * FROM produk ORDER BY id_produk DESC";
-
-                    $result = mysqli_query($conn, $query);
-
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row["id_produk"] . "</td>";
-                            echo "<td>" . $row["nama_produk"] . "</td>";
-                            echo "<td><img src='" . $row["foto_produk"] . "'  alt='Foto Produk' style='max-width: 100px; max-height: 100px; border-radius:4px;' ></td>";
-                            echo "<td>" . $row["kategori_produk"] . "</td>";
-                            echo "<td>" . $row["promo"] . "</td>";
-                            echo "<td>Rp " . number_format($row["harga_normal"], 0, ',', '.') . "</td>";
-                            echo "<td>Rp " . number_format($row["harga_promo"], 0, ',', '.') . "</td>";
-                            
-                            echo "<td>
-                            <a href='editproduk.php?id=" . $row["id_produk"] . "' class='btn btn-primary btn-sm btn-edit'>Edit</a>
-                            <button class='btn btn-danger btn-sm btn-delete' onclick='confirmDelete(" . $row["id_produk"] . ")'>Delete</button>
-                        </td>";
-                        
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='8' class='text-center'>0 results</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
+ <p>Masih dalam pengembangan</p>
 
 
     

@@ -24,7 +24,7 @@ include 'session.php';
     padding-top: 20px;
     transition: width 0.3s;
     width: 250px;
-    height: auto; /* Tinggi sidebar mengikuti tinggi dari elemen parent-nya */
+    height: auto;
 
 }
 
@@ -116,12 +116,12 @@ include 'session.php';
 
     margin-top: 40px;
     margin-left: 30px;
-    transition: background-color 0.3s, transform 0.3s; /* Efek transisi saat hover */
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .tambahdata:hover {
-    background-color: #0056b3; /* Warna latar saat dihover */
-    transform: scale(1.02); /* Memperbesar tombol sedikit saat dihover */
+    background-color: #0056b3; 
+    transform: scale(1.02); 
 }
 
         
@@ -129,16 +129,7 @@ include 'session.php';
             font-size:20px;
            color:white;
         }
-     footer {
-position:fixed;
-    bottom: 0; /* Menempatkan footer di bagian bawah layar */
-    left: 0;
-    width: 100%; /* Memastikan lebar footer sesuai dengan lebar layar */
-    background-color: #E50112; /* Warna latar belakang footer */
-   color:white;
-    padding: 10px; /* Ruang di sekitar konten footer */
-    text-align: center; /* Teks rata tengah di dalam footer */
-}
+ 
 
     </style>
 </head>

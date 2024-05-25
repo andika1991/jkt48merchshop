@@ -153,19 +153,19 @@ position:fixed;
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link text-white">
+                <a href="index.php" class="nav-link text-white">
                     <span class="icon">&#128202;</span>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="pesanan.php" class="nav-link text-white">
                     <span class="icon">&#128179;</span>
                     <span class="text">Kelola Pesanan</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white" aria-current="page">
+                <a href="manajemenproduk.php" class="nav-link text-white" aria-current="page">
                     <span class="icon">&#128722;</span>
                     <span class="text">Manajemen Products</span>
                 </a>
@@ -177,15 +177,15 @@ position:fixed;
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link active">
+                <a href="metodepembayaran.php" class="nav-link active">
                     <span class="icon">&#128202;</span>
                     <span class="text">Metode Pembayaran</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Page</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>

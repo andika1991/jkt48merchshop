@@ -24,7 +24,7 @@ include 'session.php';
     padding-top: 20px;
     transition: width 0.3s;
     width: 250px;
-    height: auto; /* Tinggi sidebar mengikuti tinggi dari elemen parent-nya */
+    height: auto; 
 
 }
 
@@ -129,16 +129,7 @@ include 'session.php';
             font-size:20px;
            color:white;
         }
-     footer {
-position:fixed;
-    bottom: 0; 
-    left: 0;
-    width: 100%; 
-    background-color: #E50112; 
-   color:white;
-    padding: 10px; 
-    text-align: center; 
-}
+
 
 .form-group {
     margin-bottom: 20px;
@@ -147,7 +138,7 @@ position:fixed;
 
 form {
     margin-top:100px;
-    width:200%;
+    width:140%;
 }
 
 label {
@@ -187,39 +178,39 @@ button:hover {
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link text-white">
+                <a href="index.php" class="nav-link text-white">
                     <span class="icon">&#128202;</span>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="pesanan.php" class="nav-link text-white">
                     <span class="icon">&#128179;</span>
                     <span class="text">Kelola Pesanan</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white" aria-current="page">
+                <a href="manajemenproduk.php" class="nav-link text-white" aria-current="page">
                     <span class="icon">&#128722;</span>
                     <span class="text">Manajemen Products</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="manajemenpengguna.php" class="nav-link text-white">
                     <span class="icon">&#128101;</span>
                     <span class="text">Manajemen Pengguna</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link active">
+                <a href="metodepembayaran.php" class="nav-link active">
                     <span class="icon">&#128202;</span>
                     <span class="text">Metode Pembayaran</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Page</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>
@@ -278,7 +269,7 @@ button:hover {
 <script>
     function confirmDelete(id_produk) {
         if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
-            // Redirect to delete action with product ID
+         
             window.location.href = "delete_produk.php?id_produk=" + id_produk;
         }
     }

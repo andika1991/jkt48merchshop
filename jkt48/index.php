@@ -85,7 +85,7 @@ include 'session.php';
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="pesanan.php" class="nav-link text-white">
                     <span class="icon">&#128179;</span>
                     <span class="text">Kelola Pesanan</span>
                 </a>
@@ -97,19 +97,19 @@ include 'session.php';
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="manajemenpengguna.php" class="nav-link text-white">
                     <span class="icon">&#128101;</span>
                     <span class="text">Manajemen Pengguna</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="metodepembayaran.php" class="nav-link text-white">
                     <span class="icon">&#128202;</span>
                     <span class="text">Metode Pembayaran</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
                     <span class="text">Artikel</span>
                 </a>

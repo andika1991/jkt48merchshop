@@ -129,16 +129,6 @@ include 'session.php';
             font-size:20px;
            color:white;
         }
-     footer {
-position:fixed;
-    bottom: 0; 
-    left: 0;
-    width: 100%; 
-    background-color: #E50112; 
-   color:white;
-    padding: 10px; 
-    text-align: center;
-}
 
 .form-group {
     margin-bottom: 20px;
@@ -147,7 +137,7 @@ position:fixed;
 
 form {
     margin-top:100px;
-    width:200%;
+    width:140%;
 }
 
 label {

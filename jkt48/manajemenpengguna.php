@@ -24,7 +24,7 @@ include 'session.php';
     padding-top: 20px;
     transition: width 0.3s;
     width: 250px;
-    height: auto; /* Tinggi sidebar mengikuti tinggi dari elemen parent-nya */
+    height: 100vh;
 
 }
 
@@ -177,7 +177,7 @@ include 'session.php';
             <li>
                 <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Page</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>
