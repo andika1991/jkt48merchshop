@@ -118,8 +118,8 @@ h5 {
 .sosmed {
     position: absolute;
     bottom: 50px;
-    left: 50%; /* Posisi horizontal di tengah */
-    transform: translateX(-50%); /* Pusatkan elemen */
+    left: 50%; 
+    transform: translateX(-50%); 
     text-align: center;
     justify-content: center;
 }
@@ -139,12 +139,12 @@ h5 {
 }
 
 .sosmed ul li:last-child {
-    margin-right: 0; /* Hilangkan margin kanan pada elemen terakhir */
+    margin-right: 0; 
 }
 .section1 {
     position: relative;
     width: 100%;
-    height: 100vh; /* Atur tinggi sesuai kebutuhan */
+    height: 100vh; 
     overflow: hidden;
 }
 
@@ -190,7 +190,7 @@ h5 {
 
 .button:hover {
     background-position: right center;
-    color: #E50112; /* Sesuaikan warna teks saat tombol dihover */
+    color: #E50112; 
     transition: background-position 0.3s;
 }
 
@@ -200,6 +200,7 @@ h5 {
 
 .section3 {
     background-color:#FF4655;
+    padding:0px 20px;
 }
 
 
@@ -236,7 +237,9 @@ h5 {
     </section>
 
     <section class="section3">
-    <h2 style="text-align:center; margin-top:-70px; color:#FF4655;font-weight:bold;font-size:50px;">JKT48MERCH OFFICIAL STORE</h2>
+    <h2 style="text-align:center; margin-top:-70px; color:#ffffff;font-weight:bold;font-size:50px;">BELANJA BERAGAM 
+MERCHENDISE JKT48</h2>
+<img src="asset/mockup-merch.svg">
     </section>
     </main>
     <footer class="footer-container">

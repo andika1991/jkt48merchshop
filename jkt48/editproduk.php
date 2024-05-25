@@ -77,7 +77,7 @@ include 'session.php';
         }
 
 
- /* Styling for form elements */
+
 .form-group {
     margin-bottom: 20px;
     margin-left:120px;
@@ -96,20 +96,20 @@ button {
     background-color: #007bff;
     border-color: #007bff;
     position: fixed;
-    bottom: 20px; /* Jarak dari bawah */
-    right: 20px; /* Jarak dari kanan */
-    z-index: 999; /* Memastikan tombol di atas konten lain */
-    padding: 10px 20px; /* Padding tombol */
-    border-radius: 5px; /* Membuat sudut tombol lebih lembut */
-    color: #fff; /* Warna teks */
-    cursor: pointer; /* Ubah kursor saat diarahkan ke tombol */
-    transition: background-color 0.3s, border-color 0.3s, transform 0.3s; /* Animasi saat dihover */
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 999; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    color: #fff; 
+    cursor: pointer; 
+    transition: background-color 0.3s, border-color 0.3s, transform 0.3s; 
 }
 
 button:hover {
     background-color: #0056b3;
     border-color: #0056b3;
-    transform: scale(1.05); /* Membuat tombol membesar sedikit saat dihover */
+    transform: scale(1.05);
 }
 
    
