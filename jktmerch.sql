@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2024 at 08:49 AM
+-- Generation Time: May 25, 2024 at 09:28 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -132,6 +132,13 @@ CREATE TABLE `pengguna` (
   `password` varchar(255) DEFAULT NULL,
   `fotoprofil` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengguna`
+--
+
+INSERT INTO `pengguna` (`id_pengguna`, `username`, `email`, `password`, `fotoprofil`) VALUES
+(2, 'Andika Fikri', 'andika123@gmail.com', 'sfdwfg', NULL);
 
 -- --------------------------------------------------------
 
@@ -297,7 +304,7 @@ ALTER TABLE `metodepembayaran`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `penilaian`
