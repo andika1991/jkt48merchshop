@@ -14,7 +14,8 @@
         header {
             background-color: #E50112;
             color: white;
-            padding: 23px 0;
+            padding: 20px 0;
+            position:sticky;
         }
         .logo img {
            
@@ -42,7 +43,7 @@
             color: #111111;
             text-decoration: none;
             padding: 12px 20px;
-            border-radius: 3px;
+            border-radius: 12px;
             transition: background-color 0.3s;
      
         }

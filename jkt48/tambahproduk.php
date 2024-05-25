@@ -3,13 +3,13 @@ include 'session.php';
 ?>
 
 
-<p></p>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Template</title>
+    <title>Admin </title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -77,7 +77,7 @@ include 'session.php';
         }
 
 
- /* Styling for form elements */
+ 
 .form-group {
     margin-bottom: 20px;
     margin-left:120px;
