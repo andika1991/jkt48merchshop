@@ -220,6 +220,10 @@ h5 {
     margin-top:-17px;
 }
 
+.section5{
+    background-color:#FF4655 
+}
+
 
 
     </style>
@@ -280,6 +284,55 @@ MERCHENDISE JKT48</h2>
   <img src="asset/image 3.svg">
 </section>
 
+
+<section class="section5">
+  <h1 class="text-center">ARTIKEL</h1>
+  <div id="artikelCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="card">
+          <img class="card-img-top" src="img/Group 2.jpg" alt="Image 1">
+          <div class="card-body">
+            <h5 class="card-title">Judul Artikel 1</h5>
+            <p class="card-text">Ini adalah deskripsi singkat artikel 1.</p>
+            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card">
+          <img class="card-img-top" src="img/Group 2.jpg" alt="Image 2">
+          <div class="card-body">
+            <h5 class="card-title">Judul Artikel 2</h5>
+            <p class="card-text">Ini adalah deskripsi singkat artikel 2.</p>
+            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card">
+          <img class="card-img-top" src="img/Group 2.jpg" alt="Image 3">
+          <div class="card-body">
+            <h5 class="card-title">Judul Artikel 3</h5>
+            <p class="card-text">Ini adalah deskripsi singkat artikel 3.</p>
+            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#artikelCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#artikelCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </main>
     <footer class="footer-container">
         <div class="gambarfooter">
