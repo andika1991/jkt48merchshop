@@ -204,6 +204,24 @@ h5 {
 }
 
 
+.section4 {
+
+    display: flex;
+  
+}
+
+.section4 img {
+    
+  margin-left: 20px;
+}
+
+.kebanggaan{
+    position:absolute;
+    margin-top:-17px;
+}
+
+
+
     </style>
 </head>
 <body>
@@ -232,15 +250,36 @@ h5 {
     </section>
 
     <section class="section2">
-      <h2 style="text-align:center; margin-top:-70px; color:#FF4655;font-weight:bold;font-size:50px;">JKT48MERCH OFFICIAL STORE</h2>
-      <p style="text-align:center; font-size:20px;">JKT48MERCH Official Store adalah toko resmi yang menyediakan berbagai merchandise eksklusif dari grup idola JKT48.<br> Temukan berbagai koleksi seperti t-shirt, poster, album, aksesoris, dan banyak lagi.Semua produk di toko kami merupakan barang original yang didesain khusus  untuk para penggemar setia JKT48. Berbelanja di JKT48MERCH Official Store memastikan Anda mendapatkan barang berkualitas tinggi yang langsung dari sumber resmi. Dukung idola favorit Anda dengan merchandise terbaik hanya di JKT48MERCH Official Store!</p>
+      <h2 style="text-align:center; margin-top:-60px; color:#FF4655;font-weight:bold;font-size:50px;">JKT48MERCH OFFICIAL STORE</h2>
+      <p style="text-align:center; font-size:20px; padding:40px 20px;">JKT48MERCH Official Store adalah toko resmi yang menyediakan berbagai merchandise eksklusif dari grup idola JKT48.<br> Temukan berbagai koleksi seperti t-shirt, poster, album, aksesoris, dan banyak lagi.Semua produk di toko kami merupakan barang original yang didesain khusus  untuk para penggemar setia JKT48. Berbelanja di JKT48MERCH Official Store memastikan Anda mendapatkan barang berkualitas tinggi yang langsung dari sumber resmi. Dukung idola favorit Anda dengan merchandise terbaik hanya di JKT48MERCH Official Store!</p>
+      
     </section>
 
     <section class="section3">
-    <h2 style="text-align:center; margin-top:-70px; color:#ffffff;font-weight:bold;font-size:50px;">BELANJA BERAGAM 
+    <h2 style="text-align:center; margin-top:-70px; color:#ffffff;font-weight:bold;font-size:85px;">BELANJA BERAGAM 
 MERCHENDISE JKT48</h2>
-<img src="asset/mockup-merch.svg">
-    </section>
+<img src="asset/mockup-merch.svg" style="margin-left:340px; margin-top:-20px;">
+<p><span style="position:absolute;font-size:80px;margin-top:-680px;font-style:italic;font-weight:bold;color:black;">Sat</span> <span style="position:absolute;font-size:80px;margin-left:140px;margin-top:-680px;font-style:italic;font-weight:bold;color:#FFFFFF;">Set</span></p>
+   <p style="position:absolute;font-size:70px;margin-top:-600px;font-style:italic;font-weight:bold;color:black;">Anti Ribet....!</p>
+<p style="position:absolute;font-size:80px;margin-top:-530px;font-style:italic;font-weight:bold;color:#FFFFFF;">Belanja Bisa <br> dari mana aja....</p>
+</section>
+
+<section class="section4">
+    <div class="kebanggaan">
+<h1 style="font-size:60px; font-weight:bold; margin-left:30px; text-align:center;">
+      Merchandise Asli <br> Kebanggaan Bersama
+    </h1>
+  
+    </div>
+  <div>
+  
+    <p style="position:absoluet; margin-top:150px;text-align:left; font-size:20px; margin-left:10px;">
+      JKT48MERCH Official Store berkomitmen untuk menyediakan merchandise asli <br>dan eksklusif yang tidak hanya menjadi simbol dukungan Anda,<br> tetapi juga menjadi sumber kebanggaan bersama.<br> Dengan kualitas produk yang terjamin dan desain yang autentik,<br>kami memastikan setiap item yang Anda beli adalah representasi sejati dari kecintaan dan dukungan Anda terhadap JKT48. <br>Belanja di sini tidak hanya tentang memiliki barang-barang eksklusif, tetapi juga tentang menjadi bagian dari komunitas penggemar yang bangga dan setia.
+    </p>
+  </div>
+  <img src="asset/image 3.svg">
+</section>
+
     </main>
     <footer class="footer-container">
         <div class="gambarfooter">
