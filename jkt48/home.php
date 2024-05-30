@@ -1,3 +1,8 @@
+<?php
+include 'session_user.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -311,12 +316,17 @@ h5 {
     background-color:#FF4655 
 }
 
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Mengkompensasi margin dari setiap kartu */
+}
+
 .card {
-    width: 18rem;
+    flex: 0 0 calc(20% - 20px); /* Lebar 20% dari parent dengan pengurangan margin dan jarak antar kartu */
+    margin: 10px; /* Margin di antara kartu */
     border: 1px solid #ccc;
-    margin-left:10px;
     border-radius: 10px;
-    margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
 }
@@ -338,7 +348,7 @@ h5 {
 }
 
 .card-title {
-    font-size: 1.5rem;
+    font-size: 15px;
     margin-bottom: 10px;
 }
 
@@ -347,6 +357,12 @@ h5 {
     color: #555;
     margin-bottom: 10px;
 }
+
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 .btn {
     display: inline-block;
@@ -363,7 +379,26 @@ h5 {
     background-color: #0056b3;
 }
 
+.normal-price {
+    text-decoration: line-through; 
+    color: #888; 
+    display: inline-block;
+    margin-right: 10px;
+}
 
+.promo-price {
+    color: #ff5733; 
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0; 
+    position: absolute; 
+    bottom: 60px;
+    left: 70px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 5px 10px;
+    border-radius: 5px;
+}
     </style>
 </head>
 <body>
@@ -389,8 +424,19 @@ h5 {
             </ul>
         </li>
         <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
-        <li><a href="login.php">LOGIN</a></li>
-        <li><a href="daftar.php">DAFTAR</a></li>
+        <?php
+    
+        if (isset($_SESSION['username'])) {
+            // Jika pengguna sudah login, tampilkan nama pengguna dan opsi logout
+            $username = $_SESSION['username'];
+            echo "<li><a href='akun.php' class='login'><img src='img/Group.jpg' alt='User Icon'> $username</a></li>";
+            // Tambahkan opsi logout di sini jika diperlukan
+        } else {
+            // Jika pengguna belum login, tampilkan opsi login dan daftar
+            echo "<li><a href='loginuser.php' class='login'><i class='fas fa-lock'></i> Login</a></li>";
+            echo "<li><a href='daftar.php'>Daftar</a></li>";
+        }
+        ?>
     </ul>
 </nav>
 
@@ -467,37 +513,31 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="promo">
 <h4>Sedang Promo</h4>
 
-
 <?php
 include 'koneksi.php';
 
-// Query untuk mengambil data produk dengan status promo aktif
 $query = "SELECT * FROM produk WHERE promo = 'Aktif'";
 $result = mysqli_query($conn, $query);
 
-// Fungsi untuk memformat harga menjadi format rupiah
 function format_rupiah($angka){
     $rupiah = "Rp " . number_format($angka,0,',','.');
     return $rupiah;
 }
-
-// Loop untuk menampilkan setiap produk sebagai card
-while ($row = mysqli_fetch_assoc($result)) {
-    ?>
-    <div class="card" style="width: 18rem;">
-        <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h2 class="card-title"><?php echo $row['nama_produk']; ?></h2>
-
-            <p class="card-text">Harga Normal: <?php echo format_rupiah($row['harga_normal']); ?></p>
-            <p class="card-text">Harga Promo: <?php echo format_rupiah($row['harga_promo']); ?></p>
-            <a href="#" class="btn btn-primary">Beli Sekarang</a>
-        </div>
-    </div>
-    <?php
-}
 ?>
 
+
+<div class="card-container">
+    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <div class="card">
+            <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+            </div>
+        </div>
+    <?php } ?>
 </div>
 
 

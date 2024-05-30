@@ -1,3 +1,8 @@
+<?php
+include 'session_user.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+YoHbqv6a8z6P4mk8ze8kF0R1Bq8qG2St7Z9gH6" crossorigin="anonymous"></script>
 
     <title>JKT48MERCH - Official Store</title>
     <style>
@@ -33,19 +40,103 @@
             margin-left: 20px;
         }
         nav {
-            display: inline-block;
-            float: right;
-            margin-right: 20px;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin: -48px 18px;
-        }
+    display: inline-block;
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li {
+    position: relative;
+    margin: -48px 18px;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul ul li {
+    margin: 10px 0;
+}
+
+nav ul ul ul {
+    left: 100%;
+    top: 0;
+}
+
+nav a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+nav a:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+    border-radius: 5px;
+}
+
+
+/* Gaya untuk submenu */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 30px; /* Mengatur posisi submenu relatif terhadap submenu kategori */
+  
+    margin-top: -10px; /* Menghindari celah antara submenu */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Mengatur z-index agar submenu muncul di atas konten lain */
+}
+
+/* Menampilkan submenu saat kategori barang diklik */
+.submenu.active {
+    display: block;
+}
+
+/* Gaya untuk setiap item dalam submenu */
+.submenu li {
+    position: relative;
+    margin: 0; /* Hapus margin bawaan */
+}
+
+.submenu li a {
+    background-color: #FFFFFF;
+    color: #111111;
+    text-decoration: none;
+    padding: 8px 16px; /* Menyesuaikan padding agar submenu lebih ramping */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: block; /* Membuat setiap item dalam submenu menjadi blok */
+}
+
+.submenu li a:hover {
+    background-color: #ddd;
+}
+
+
+
+
         nav ul li a {
             background-color: #FFFFFF;
             color: #111111;
@@ -225,8 +316,89 @@ h5 {
     background-color:#FF4655 
 }
 
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Mengkompensasi margin dari setiap kartu */
+}
+
+.card {
+    flex: 0 0 calc(20% - 20px); /* Lebar 20% dari parent dengan pengurangan margin dan jarak antar kartu */
+    margin: 10px; /* Margin di antara kartu */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
 
 
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.normal-price {
+    text-decoration: line-through; 
+    color: #888; 
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.promo-price {
+    color: #ff5733; 
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0; 
+    position: absolute; 
+    bottom: 60px;
+    left: 70px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 5px 10px;
+    border-radius: 5px;
+}
     </style>
 </head>
 <body>
@@ -236,105 +408,86 @@ h5 {
         </div>
         <nav>
     <ul>
-        <li><a href="loginuser.php"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
-        <li><a href="daftar.php"><i class="fas fa-user-plus"></i> DAFTAR</a></li>
+        <li><a href="#" class="kategori-trigger">Kategori Barang</a>
+            <ul class="submenu">
+                <li><a href="subkategori1.php">Pakaian</a></li>
+                <li><a href="subkategori2.php">Musik</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+            </ul>
+        </li>
+        <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
+        <?php
+    
+        if (isset($_SESSION['username'])) {
+            // Jika pengguna sudah login, tampilkan nama pengguna dan opsi logout
+            $username = $_SESSION['username'];
+            echo "<li><a href='akun.php' class='login'><img src='img/Group.jpg' alt='User Icon'> $username</a></li>";
+            // Tambahkan opsi logout di sini jika diperlukan
+        } else {
+            // Jika pengguna belum login, tampilkan opsi login dan daftar
+            echo "<li><a href='login.php' class='login'><i class='fas fa-lock'></i> Login</a></li>";
+            echo "<li><a href='daftar.php'>Daftar</a></li>";
+        }
+        ?>
     </ul>
 </nav>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var kategoriTrigger = document.querySelector('.kategori-trigger');
+    var submenu = document.querySelector('.submenu');
+
+    kategoriTrigger.addEventListener('click', function() {
+        submenu.classList.toggle('active');
+    });
+
+    // Menyembunyikan submenu saat kategori barang tidak diklik
+    document.addEventListener('click', function(event) {
+        if (!kategoriTrigger.contains(event.target)) {
+            submenu.classList.remove('active');
+        }
+    });
+});
+
+</script>
+
+
     </header>
     <main>
-    <section class="section1">
-  
-    <video autoplay muted loop>
-            <source src="asset/vid.mp4" type="video/mp4">
-           
-        </video>
-        <h1 style="font-size:80px; text-align:center; font-weight:bold; margin-top:30px;">Welcome To</h1>
-        <h3 style="font-size:50px; text-align:center; font-weight:bold; margin-top:30px;">JKT48 OFFICIAL MERCHENDISE</h3>
-        <a href="home.php" class="button"><i class="bi bi-shop"></i> Belanja Sekarang</a>
+< class="detailproduk">
+<?php
+include 'koneksi.php'; // Sertakan file koneksi
 
-    </section>
+// Ambil id_produk dari URL
+$id_produk = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-    <section class="section2">
-      <h2 style="text-align:center; margin-top:-40px; color:#FF4655;font-weight:bold;font-size:50px;">JKT48MERCH OFFICIAL STORE</h2>
-      <p style="text-align:center; font-size:20px; padding:40px 20px;">JKT48MERCH Official Store adalah toko resmi yang menyediakan berbagai merchandise eksklusif dari grup idola JKT48.<br> Temukan berbagai koleksi seperti t-shirt, poster, album, aksesoris, dan banyak lagi.Semua produk di toko kami merupakan barang original yang didesain khusus  untuk para penggemar setia JKT48. Berbelanja di JKT48MERCH Official Store memastikan Anda mendapatkan barang berkualitas tinggi yang langsung dari sumber resmi. Dukung idola favorit Anda dengan merchandise terbaik hanya di JKT48MERCH Official Store!</p>
-      
-    </section>
+// Query untuk mendapatkan detail produk berdasarkan id_produk
+$query = "SELECT * FROM produk WHERE id_produk = $id_produk";
+$result = mysqli_query($conn, $query);
 
-    <section class="section3">
-    <h2 style="text-align:center; margin-top:-50px; color:#ffffff;font-weight:bold;font-size:85px;">BELANJA BERAGAM 
-MERCHENDISE JKT48</h2>
-<img src="asset/mockup-merch.svg" style="margin-left:340px; margin-top:-20px;">
-<p><span style="position:absolute;font-size:80px;margin-top:-680px;font-style:italic;font-weight:bold;color:black;">Sat</span> <span style="position:absolute;font-size:80px;margin-left:140px;margin-top:-680px;font-style:italic;font-weight:bold;color:#FFFFFF;">Set</span></p>
-   <p style="position:absolute;font-size:70px;margin-top:-600px;font-style:italic;font-weight:bold;color:black;">Anti Ribet....!</p>
-<p style="position:absolute;font-size:80px;margin-top:-530px;font-style:italic;font-weight:bold;color:#FFFFFF;">Belanja Bisa <br> dari mana aja....</p>
-</section>
-
-<section class="section4">
-    <div class="kebanggaan">
-<h1 style="font-size:60px; font-weight:bold; margin-left:30px; text-align:center;">
-      Merchandise Asli <br> Kebanggaan Bersama
-    </h1>
-  
-    </div>
-  <div>
-  
-    <p style="position:absoluet; margin-top:150px;text-align:left; font-size:20px; margin-left:10px;">
-      JKT48MERCH Official Store berkomitmen untuk menyediakan merchandise asli <br>dan eksklusif yang tidak hanya menjadi simbol dukungan Anda,<br> tetapi juga menjadi sumber kebanggaan bersama.<br> Dengan kualitas produk yang terjamin dan desain yang autentik,<br>kami memastikan setiap item yang Anda beli adalah representasi sejati dari kecintaan dan dukungan Anda terhadap JKT48. <br>Belanja di sini tidak hanya tentang memiliki barang-barang eksklusif, tetapi juga tentang menjadi bagian dari komunitas penggemar yang bangga dan setia.
-    </p>
-  </div>
-  <img src="asset/image 3.svg">
-</section>
+// Periksa apakah produk ditemukan
+if ($row = mysqli_fetch_assoc($result)) {
+    // Produk ditemukan, tampilkan detailnya
+    ?><div class="detailproduk">
+    <img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>">
+    <h2><?php echo $row['nama_produk']; ?></h2>
+    <p><?php echo $row['deskripsi_produk']; ?></p>
+    <p>Kategori: <?php echo $row['kategori_produk']; ?></p>
+    <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+    <a href="#" class="btn btn-primary">Beli Sekarang</a>
+</div>
 
 
-<section class="section5">
-  <h1 class="text-center">ARTIKEL</h1>
-  <div id="artikelCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="card">
-          <img class="card-img-top" src="img/Group 2.jpg" alt="Image 1">
-          <div class="card-body">
-            <h5 class="card-title">Judul Artikel 1</h5>
-            <p class="card-text">Ini adalah deskripsi singkat artikel 1.</p>
-            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <img class="card-img-top" src="img/Group 2.jpg" alt="Image 2">
-          <div class="card-body">
-            <h5 class="card-title">Judul Artikel 2</h5>
-            <p class="card-text">Ini adalah deskripsi singkat artikel 2.</p>
-            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <img class="card-img-top" src="img/Group 2.jpg" alt="Image 3">
-          <div class="card-body">
-            <h5 class="card-title">Judul Artikel 3</h5>
-            <p class="card-text">Ini adalah deskripsi singkat artikel 3.</p>
-            <a href="#" class="btn btn-primary">Baca Selengkapnya</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#artikelCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#artikelCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</section>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     </main>
     <footer class="footer-container">
         <div class="gambarfooter">
@@ -399,4 +552,5 @@ MERCHENDISE JKT48</h2>
 
     </footer>
 </body>
+
 </html>

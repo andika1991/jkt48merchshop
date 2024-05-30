@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('active');
     });
 
-    // Menyembunyikan submenu saat kategori barang tidak diklik
+
     document.addEventListener('click', function(event) {
         if (!kategoriTrigger.contains(event.target)) {
             submenu.classList.remove('active');
@@ -494,10 +494,10 @@ document.addEventListener('DOMContentLoaded', function() {
         <img src="asset/jkt48.jpeg" style="width:600px;height:530px;position:absolute; margin-top:0px;"></div>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="proses_login.php" method="POST">
+        <form action="prosesuserlogin.php" method="POST">
             <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="email" class="form-label">Email :</label>
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
