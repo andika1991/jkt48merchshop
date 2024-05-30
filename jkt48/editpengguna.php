@@ -201,24 +201,27 @@ if(isset($_GET['id'])) {
     exit();
 }
 
-// Check if form is submitted
+
+
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Assign form values to variables
     $username = $_POST['username'];
     $email = $_POST['email'];
 
-    // Check if password is provided, if not, keep the existing password
+    // Check if password is provided and hash it
     if(!empty($_POST['password'])) {
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $password_sql = ", password='$password'";
+    } else {
+        $password_sql = "";
     }
 
-    // Update the data in the database
-    $query = "UPDATE pengguna SET username='$username', email='$email', password='$password' WHERE id_pengguna=$id_pengguna";
+    // Prepare the SQL query to update the user data
+    $query = "UPDATE pengguna SET username='$username', email='$email' $password_sql WHERE id_pengguna=$id_pengguna";
     $update_result = mysqli_query($conn, $query);
 
     if($update_result) {
         echo "<script>
-       
         window.location.href = 'manajemenpengguna.php';
         </script>";
     } else {
@@ -226,6 +229,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <form method="POST" action="">
     <input type="hidden" name="id_pengguna" value="<?php echo $id_pengguna; ?>">

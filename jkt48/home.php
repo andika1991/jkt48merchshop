@@ -364,109 +364,35 @@ h5 {
 }
 
 
-
-body {
-    background: linear-gradient(135deg, #FFD700, #FF6347);
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-.login-container {
-    position: absolute;
-    top: 60%;
-    right: 7%;
-    transform: translateY(-50%);
-    max-width: 600px; /* Ensure the container is wide */
-    width: 100%; /* Ensure it takes the full width available */
-    padding: 100px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease;
-}
-
-
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-}
-
-
-.form-label {
-    color: #555;
-    font-size: 16px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-
-.btn-primary {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FF6347;
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: #FF4500;
-}
-
-main {
-    padding-bottom: 530px;
-}
-
-
-
-
     </style>
 </head>
 <body>
-<header>
-    <div class="logo">
-        <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
-    </div>
-    <nav>
-        <ul>
-            <li>
-                <a href="#" class="kategori-trigger">Kategori Barang</a>
-                <ul class="submenu">
-                    <li><a href="subkategori1.php">Pakaian</a></li>
-                    <li><a href="subkategori2.php">Musik</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                </ul>
-            </li>
-            <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
-            <li><a href="login.php"><i class="bi bi-person-circle"></i>LOGIN</a></li>
-            <li><a href="daftar.php"><i class="bi bi-person-plus"></i>DAFTAR</a></li>
-        </ul>
-    </nav>
-</header>
-
+    <header>
+        <div class="logo">
+            <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
+        </div>
+        <nav>
+    <ul>
+        <li><a href="#" class="kategori-trigger">Kategori Barang</a>
+            <ul class="submenu">
+                <li><a href="subkategori1.php">Pakaian</a></li>
+                <li><a href="subkategori2.php">Musik</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+            </ul>
+        </li>
+        <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
+        <li><a href="login.php">LOGIN</a></li>
+        <li><a href="daftar.php">DAFTAR</a></li>
+    </ul>
+</nav>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -490,24 +416,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-        <div class="imgjkt">
-        <img src="asset/jkt48.jpeg" style="width:600px;height:530px;position:absolute; margin-top:0px;"></div>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="proses_login.php" method="POST">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-    </div>
-</main>
 
+    <div class="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/Group 2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/gopay.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="img/Group 2.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+YoHbqv6a8z6P4mk8ze8kF0R1Bq8qG2St7Z9gH6" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    // Tambahkan event listener untuk tombol navigasi carousel
+    $('.carousel-control-next').click(function(e) {
+      e.preventDefault(); // Mencegah perilaku standar dari tombol
+      $('#carouselExampleIndicators').carousel('next');
+    });
+
+    $('.carousel-control-prev').click(function(e) {
+      e.preventDefault(); // Mencegah perilaku standar dari tombol
+      $('#carouselExampleIndicators').carousel('prev');
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
+</div>
+
+
+<div class="promo">
+<h4>Sedang Promo</h4>
+
+
+<?php
+include 'koneksi.php';
+
+// Query untuk mengambil data produk dengan status promo aktif
+$query = "SELECT * FROM produk WHERE promo = 'Aktif'";
+$result = mysqli_query($conn, $query);
+
+// Fungsi untuk memformat harga menjadi format rupiah
+function format_rupiah($angka){
+    $rupiah = "Rp " . number_format($angka,0,',','.');
+    return $rupiah;
+}
+
+// Loop untuk menampilkan setiap produk sebagai card
+while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+    <div class="card" style="width: 18rem;">
+        <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title"><?php echo $row['nama_produk']; ?></h2>
+
+            <p class="card-text">Harga Normal: <?php echo format_rupiah($row['harga_normal']); ?></p>
+            <p class="card-text">Harga Promo: <?php echo format_rupiah($row['harga_promo']); ?></p>
+            <a href="#" class="btn btn-primary">Beli Sekarang</a>
+        </div>
+    </div>
+    <?php
+}
+?>
+
+</div>
+
+
+    </main>
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">

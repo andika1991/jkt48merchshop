@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>JKT48MERCH - Official Store</title>
@@ -234,11 +235,12 @@ h5 {
             <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
         </div>
         <nav>
-            <ul>
-                <li><a href="login.php">LOGIN</a></li>
-                <li><a href="daftar.php">DAFTAR</a></li>
-            </ul>
-        </nav>
+    <ul>
+        <li><a href="login.php"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+        <li><a href="daftar.php"><i class="fas fa-user-plus"></i> DAFTAR</a></li>
+    </ul>
+</nav>
+
     </header>
     <main>
     <section class="section1">
@@ -254,13 +256,13 @@ h5 {
     </section>
 
     <section class="section2">
-      <h2 style="text-align:center; margin-top:-60px; color:#FF4655;font-weight:bold;font-size:50px;">JKT48MERCH OFFICIAL STORE</h2>
+      <h2 style="text-align:center; margin-top:-40px; color:#FF4655;font-weight:bold;font-size:50px;">JKT48MERCH OFFICIAL STORE</h2>
       <p style="text-align:center; font-size:20px; padding:40px 20px;">JKT48MERCH Official Store adalah toko resmi yang menyediakan berbagai merchandise eksklusif dari grup idola JKT48.<br> Temukan berbagai koleksi seperti t-shirt, poster, album, aksesoris, dan banyak lagi.Semua produk di toko kami merupakan barang original yang didesain khusus  untuk para penggemar setia JKT48. Berbelanja di JKT48MERCH Official Store memastikan Anda mendapatkan barang berkualitas tinggi yang langsung dari sumber resmi. Dukung idola favorit Anda dengan merchandise terbaik hanya di JKT48MERCH Official Store!</p>
       
     </section>
 
     <section class="section3">
-    <h2 style="text-align:center; margin-top:-70px; color:#ffffff;font-weight:bold;font-size:85px;">BELANJA BERAGAM 
+    <h2 style="text-align:center; margin-top:-50px; color:#ffffff;font-weight:bold;font-size:85px;">BELANJA BERAGAM 
 MERCHENDISE JKT48</h2>
 <img src="asset/mockup-merch.svg" style="margin-left:340px; margin-top:-20px;">
 <p><span style="position:absolute;font-size:80px;margin-top:-680px;font-style:italic;font-weight:bold;color:black;">Sat</span> <span style="position:absolute;font-size:80px;margin-left:140px;margin-top:-680px;font-style:italic;font-weight:bold;color:#FFFFFF;">Set</span></p>

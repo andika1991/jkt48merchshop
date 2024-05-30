@@ -373,60 +373,75 @@ body {
 }
 
 .login-container {
-    position: absolute;
-    top: 60%;
-    right: 7%;
-    transform: translateY(-50%);
-    max-width: 600px; /* Ensure the container is wide */
-    width: 100%; /* Ensure it takes the full width available */
-    padding: 100px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease;
-}
+            position: absolute;
+            top: 60%;
+            right: 6%;
+            transform: translateY(-50%);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease;
+        }
 
+        /* Header styling */
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
 
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-}
+        /* Form styling */
+        .form-label {
+            color: #555;
+            font-size: 16px;
+        }
 
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            position: relative;
+        }
 
-.form-label {
-    color: #555;
-    font-size: 16px;
-}
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
 
-.form-control {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
+        .toggle-password {
+            position: absolute;
+            top: 70%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #888;
+        }
 
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FF6347;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-.btn-primary {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FF6347;
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: #FF4500;
-}
+        .btn-primary:hover {
+            background-color: #FF4500;
+        }
 
 main {
     padding-bottom: 530px;
@@ -491,23 +506,61 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
     <main>
         <div class="imgjkt">
-        <img src="asset/jkt48.jpeg" style="width:600px;height:530px;position:absolute; margin-top:0px;"></div>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="proses_login.php" method="POST">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-    </div>
-</main>
+            <img src="asset/jkt48.jpeg" style="width:600px;height:530px;position:absolute; margin-top:0px;">
+        </div>
+        <div class="login-container">
+            <h2>Register</h2>
+            <form id="registrationForm" action="proses_daftar.php" method="POST" onsubmit="return validateForm()">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3 input-wrapper">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+                </div>
+                <div class="mb-3 input-wrapper">
+                    <label for="confirm-password" class="form-label">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">👁️</span>
+                </div>
+                <div id="error-message" class="error"></div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </main>
+    <script>
+        function togglePasswordVisibility(id) {
+            var passwordField = document.getElementById(id);
+            var toggleIcon = passwordField.nextElementSibling;
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.textContent = "🙈";
+            } else {
+                passwordField.type = "password";
+                toggleIcon.textContent = "👁️";
+            }
+        }
 
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm-password").value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match.";
+                return false;
+            }
+
+            errorMessage.textContent = "";
+            return true;
+        }
+    </script>
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">
