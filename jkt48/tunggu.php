@@ -512,13 +512,128 @@ h5 {
     margin: 5px 0;
 }
 
+table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .btn-checkout {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-checkout:hover {
+            background-color: #45a049;
+        }
+
+
+        /* CSS untuk modal konfirmasi */
+.modal {
+  display: none; /* Sembunyikan modal secara default */
+  position: fixed; /* Tetap di posisi */
+  z-index: 1; /* Atur z-index agar modal muncul di atas konten lain */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4); /* Warna latar belakang semi-transparan */
+}
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Lebar konten modal */
+  max-width: 400px; /* Lebar maksimum konten modal */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #ddd;
+}
+
+
+.modal-content p {
+  margin-bottom: 15px;
+}
+.lanjutkan_pembayaran {
+    display: inline-block; 
+    padding: 5px 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 3px; 
+}
+
+.Rectangle27 {
+    width: 200px;
+    height: auto; 
+    padding: 10px; 
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+
+.Rectangle27 img {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+}
+
+.ButtonContainer {
+    margin-top: 10px; 
+}
+
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
-        </div>
+    <div class="logo">
+    <a href="home.php">
+        <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
+       
+    </a>
+</div>
         <nav>
     <ul>
         <li><a href="#" class="kategori-trigger">Kategori Barang</a>
@@ -575,104 +690,108 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-    <?php
-include 'koneksi.php'; 
+    <main>
+<?php
+$id_pengguna = $_SESSION['id_pengguna']; 
+if (isset($_GET['id_datacheckout']) && isset($_GET['invoice_id']) ) { 
+    $id_datacheckout = mysqli_real_escape_string($conn, $_GET['id_datacheckout']);
+    $invoice_id = mysqli_real_escape_string($conn, $_GET['invoice_id']);
+    $query = "SELECT detail_checkout.*, datacheckout.*, produk.*
+              FROM detail_checkout
+              JOIN datacheckout ON detail_checkout.id_datacheckout = datacheckout.id_datacheckout
+              JOIN produk ON detail_checkout.id_produk = produk.id_produk
+              WHERE detail_checkout.id_datacheckout = $id_datacheckout";
 
+    $result = mysqli_query($conn, $query);
 
-$id_produk = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-
-$query = "SELECT * FROM produk WHERE id_produk = $id_produk";
-$result = mysqli_query($conn, $query);
-
-
-if ($row = mysqli_fetch_assoc($result)) {
-
-    function format_rupiah($angka){
-        $rupiah = "Rp " . number_format($angka,0,',','.');
-        return $rupiah;
+    function format_rupiah($angka) {
+        return "Rp " . number_format($angka, 0, ',', '.');
     }
-    ?>
-<div class="kembali">
-    <a href="home.php" class="btn-back">Kembali</a>
-</div>
 
-<div class="detailproduk">
+    $row = mysqli_fetch_assoc($result); // Ambil satu baris pertama dari hasil query
+    $namapenerima = $row['nama_penerima'];
+    $alamatpenerima = $row['alamat_detail'];
+    $total_harga = 0;
+    do {
+        $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
+        $total_harga += $harga_produk * $row['jumlah'];
+    } while ($row = mysqli_fetch_assoc($result)); // Hitung total harga dari semua produk
 
-    <img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>">
-    <h2><?php echo $row['nama_produk']; ?></h2>
-    <p><?php echo $row['deskripsi_produk']; ?></p>
-    <p class="category">Kategori: <?php echo $row['kategori_produk']; ?></p>
-    <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
-    <a href="#" class="btn">Beli Sekarang</a>
-    <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn">Tambahkan Ke Keranjang</a>
-</div>
-    <?php
-} else {
- 
-    echo "<p>Produk tidak ditemukan.</p>";
-}
+    $biaya_ongkir = 0;
+    if ($total_harga < 100000) {
+        $biaya_ongkir = $total_harga * 0.04;
+    } elseif ($total_harga <= 500000) {
+        $biaya_ongkir = $total_harga * 0.08;
+    } elseif ($total_harga <= 1000000) {
+        $biaya_ongkir = $total_harga * 0.12;
+    } else {
+        $biaya_ongkir = $total_harga * 0.17;
+    }
 
-
-
-$query = "
-    SELECT penilaian.*, pengguna.username
-    FROM penilaian 
-    JOIN pengguna ON penilaian.id_pengguna = pengguna.id_pengguna 
-    WHERE penilaian.id_produk = $id_produk";
-$result = mysqli_query($conn, $query);
+    $total_pembayaran = $total_harga + $biaya_ongkir; 
 ?>
 
-<div class="ulasan-container">
-    <h3>Ulasan Produk</h3>
-    <div class="ulasan-wrapper">
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <div class="ulasan-card">
-                <p><strong><?php echo $row['username']; ?></strong></p>
-                <p><?php echo $row['penilaian']; ?> ★</p>
-                <p><?php echo $row['komentar']; ?></p>
-            </div>
-        <?php } ?>
-    </div>
+<h2>Detail Pembelian Produk</h2>
+<table>
+    <tr>
+        <th>Gambar</th>
+        <th>Nama Produk</th>
+        <th>Jumlah</th>
+        <th>Harga</th>
+    </tr>
+    <?php
+    mysqli_data_seek($result, 0); 
+    while ($row = mysqli_fetch_assoc($result)) { ?>
+        <tr>
+            <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
+            <td><?php echo $row['nama_produk']; ?></td>
+            <td><?php echo $row['jumlah']; ?></td>
+            <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
+        </tr> 
+    <?php } ?>
+</table>
+
+<div class="total">
+    <p>Total Harga: <?php echo format_rupiah($total_harga); ?></p>
+    <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
+    <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
 </div>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    const wrapper = document.querySelector('.ulasan-wrapper');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
 
-    wrapper.addEventListener('mousedown', (e) => {
-        isDown = true;
-        wrapper.classList.add('active');
-        startX = e.pageX - wrapper.offsetLeft;
-        scrollLeft = wrapper.scrollLeft;
-    });
-
-    wrapper.addEventListener('mouseleave', () => {
-        isDown = false;
-        wrapper.classList.remove('active');
-    });
-
-    wrapper.addEventListener('mouseup', () => {
-        isDown = false;
-        wrapper.classList.remove('active');
-    });
-
-    wrapper.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - wrapper.offsetLeft;
-        const walk = (x - startX) * 3; // Scroll-fast
-        wrapper.scrollLeft = scrollLeft - walk;
-    });
-});
-</script>
-
-
-<div class="Produk sejenis">
-<h4>Produk Serupa</h4>
+<div>
+    <h2>Detail Pengiriman</h2>
+    <p>Nama Penerima: <?php echo $namapenerima ?></p>
+    <p>Alamat Penerima: <?php echo $alamatpenerima ?></p>
 </div>
+
+<div>
+    <h2>Terimakasih telah mengirimkan bukti pembayaran, Admin sedang melakukan pengecekan estimasi 1-15 menit</h2>
+    <?php 
+    // Query untuk memeriksa status pesanan
+    $query_status_pesanan = "SELECT * FROM pesanan WHERE invoice_id = '$invoice_id'; ";
+    $result_status_pesanan = mysqli_query($conn, $query_status_pesanan);
+    
+    while ($row_status = mysqli_fetch_assoc($result_status_pesanan)) {
+        // Periksa status pembayaran sebelum output
+        if ($row_status["status_pesanan"] == 'Diproses') {
+            echo "<script type='text/javascript'>
+                    window.location.href = 'produkdibayar.php?invoice_id=" . $row_status["invoice_id"] . "';
+                  </script>";
+            exit; // Pastikan tidak ada output lain sebelum redirect
+        }
+    }
+    ?>
+</div>
+
+<?php 
+} else {
+    echo "Data tidak lengkap.";
+}
+?>
+</main>
+
+
+
+    
 </main>
     <footer class="footer-container">
         <div class="gambarfooter">

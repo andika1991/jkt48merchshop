@@ -512,13 +512,128 @@ h5 {
     margin: 5px 0;
 }
 
+table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .btn-checkout {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-checkout:hover {
+            background-color: #45a049;
+        }
+
+
+        /* CSS untuk modal konfirmasi */
+.modal {
+  display: none; /* Sembunyikan modal secara default */
+  position: fixed; /* Tetap di posisi */
+  z-index: 1; /* Atur z-index agar modal muncul di atas konten lain */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4); /* Warna latar belakang semi-transparan */
+}
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Lebar konten modal */
+  max-width: 400px; /* Lebar maksimum konten modal */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #ddd;
+}
+
+
+.modal-content p {
+  margin-bottom: 15px;
+}
+.lanjutkan_pembayaran {
+    display: inline-block; 
+    padding: 5px 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 3px; 
+}
+
+.Rectangle27 {
+    width: 200px;
+    height: auto; 
+    padding: 10px; 
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+
+.Rectangle27 img {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+}
+
+.ButtonContainer {
+    margin-top: 10px; 
+}
+
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
-        </div>
+    <div class="logo">
+    <a href="home.php">
+        <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
+       
+    </a>
+</div>
         <nav>
     <ul>
         <li><a href="#" class="kategori-trigger">Kategori Barang</a>
@@ -545,7 +660,7 @@ h5 {
             echo "<li><a href='akun.php' class='login'><img src='img/Group.jpg' alt='User Icon'> $username</a></li>";
             
         } else {
-            // Jika pengguna belum login, tampilkan opsi login dan daftar
+           
             echo "<li><a href='login.php' class='login'><i class='fas fa-lock'></i> Login</a></li>";
             echo "<li><a href='daftar.php'>Daftar</a></li>";
         }
@@ -575,104 +690,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-    <?php
-include 'koneksi.php'; 
+    <main>
 
-
-$id_produk = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-
-$query = "SELECT * FROM produk WHERE id_produk = $id_produk";
-$result = mysqli_query($conn, $query);
-
-
-if ($row = mysqli_fetch_assoc($result)) {
-
-    function format_rupiah($angka){
-        $rupiah = "Rp " . number_format($angka,0,',','.');
-        return $rupiah;
-    }
-    ?>
-<div class="kembali">
-    <a href="home.php" class="btn-back">Kembali</a>
-</div>
-
-<div class="detailproduk">
-
-    <img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>">
-    <h2><?php echo $row['nama_produk']; ?></h2>
-    <p><?php echo $row['deskripsi_produk']; ?></p>
-    <p class="category">Kategori: <?php echo $row['kategori_produk']; ?></p>
-    <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
-    <a href="#" class="btn">Beli Sekarang</a>
-    <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn">Tambahkan Ke Keranjang</a>
-</div>
-    <?php
-} else {
  
-    echo "<p>Produk tidak ditemukan.</p>";
-}
+</main>
 
 
 
-$query = "
-    SELECT penilaian.*, pengguna.username
-    FROM penilaian 
-    JOIN pengguna ON penilaian.id_pengguna = pengguna.id_pengguna 
-    WHERE penilaian.id_produk = $id_produk";
-$result = mysqli_query($conn, $query);
-?>
-
-<div class="ulasan-container">
-    <h3>Ulasan Produk</h3>
-    <div class="ulasan-wrapper">
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <div class="ulasan-card">
-                <p><strong><?php echo $row['username']; ?></strong></p>
-                <p><?php echo $row['penilaian']; ?> ★</p>
-                <p><?php echo $row['komentar']; ?></p>
-            </div>
-        <?php } ?>
-    </div>
-</div>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    const wrapper = document.querySelector('.ulasan-wrapper');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    wrapper.addEventListener('mousedown', (e) => {
-        isDown = true;
-        wrapper.classList.add('active');
-        startX = e.pageX - wrapper.offsetLeft;
-        scrollLeft = wrapper.scrollLeft;
-    });
-
-    wrapper.addEventListener('mouseleave', () => {
-        isDown = false;
-        wrapper.classList.remove('active');
-    });
-
-    wrapper.addEventListener('mouseup', () => {
-        isDown = false;
-        wrapper.classList.remove('active');
-    });
-
-    wrapper.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - wrapper.offsetLeft;
-        const walk = (x - startX) * 3; // Scroll-fast
-        wrapper.scrollLeft = scrollLeft - walk;
-    });
-});
-</script>
-
-
-<div class="Produk sejenis">
-<h4>Produk Serupa</h4>
-</div>
+    
 </main>
     <footer class="footer-container">
         <div class="gambarfooter">
