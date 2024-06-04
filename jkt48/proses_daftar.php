@@ -22,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the statement
     if ($conn->query($sql) === TRUE) {
-        echo "Registration successful. Welcome, " . $username . "!";
+        echo "<script>
+        window.location.href = 'daftarsukses.php';
+      </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

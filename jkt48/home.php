@@ -316,89 +316,120 @@ h5 {
     background-color:#FF4655 
 }
 
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -10px; /* Mengkompensasi margin dari setiap kartu */
-}
+.promo {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+            position: relative;
+        }
+        h4 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .card-container {
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+            gap: 20px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            min-width: 100%;
+        }
+        .card-container::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            min-width: 250px;
+            width: 250px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-body {
+            padding: 15px;
+            text-align: left;
+        }
+        .card-title {
+            font-size: 1.2em;
+            margin: 0 0 10px;
+        }
+        .card-text {
+            margin: 0 0 10px;
+        }
+        .normal-price {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .promo-price {
+            color: #e60000;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-prev, .btn-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+            border-radius: 50%;
+        }
+        .btn-prev {
+            left: -20px;
+        }
+        .btn-next {
+            right: -20px;
+        }
+        .btn-prev:disabled, .btn-next:disabled {
+            display: none;
+        }
 
-.card {
-    flex: 0 0 calc(20% - 20px); /* Lebar 20% dari parent dengan pengurangan margin dan jarak antar kartu */
-    margin: 10px; /* Margin di antara kartu */
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.card-title {
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-
-.card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-
-.btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-.normal-price {
-    text-decoration: line-through; 
-    color: #888; 
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.promo-price {
-    color: #ff5733; 
-    display: inline-block;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0; 
-    position: absolute; 
-    bottom: 60px;
-    left: 70px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 5px 10px;
-    border-radius: 5px;
-}
+        .btn-see-more-container {
+            text-align: right;
+        }
+        .btn-see-more {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn-see-more:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -409,19 +440,18 @@ h5 {
         <nav>
     <ul>
         <li><a href="#" class="kategori-trigger">Kategori Barang</a>
-            <ul class="submenu">
-                <li><a href="subkategori1.php">Pakaian</a></li>
-                <li><a href="subkategori2.php">Musik</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-                <li><a href="subkategori1.php">Subkategori 1</a></li>
-            </ul>
+        <ul class="submenu">
+    <li><a href="Pakaian.php"><i class="fas fa-tshirt"></i> Pakaian</a></li>
+    <li><a href="Aksesoris.php"><i class="fas fa-ring"></i> Aksesoris</a></li>
+    <li><a href="koleksi.php"><i class="fas fa-gem"></i> Koleksi</a></li>
+    <li><a href="elektronik.php"><i class="fas fa-laptop"></i> Elektronik</a></li>
+    <li><a href="pernakpernik.php"><i class="fas fa-shopping-basket"></i> Pernak-Pernik</a></li>
+    <li><a href="rumahtangga.php"><i class="fas fa-home"></i> Rumah Tangga</a></li>
+    <li><a href="musik.php"><i class="fas fa-music"></i> Musik</a></li>
+    <li><a href="Perlengkapansekolah.php"><i class="fas fa-school"></i> Perlengkapan Sekolah</a></li>
+    <li><a href="lainnya.php"><i class="fas fa-ellipsis-h"></i> Lainnya</a></li>
+</ul>
+
         </li>
         <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
         <?php
@@ -462,84 +492,373 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-
-    <div class="carousel">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="img/Group 2.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="img/gopay.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="img/Group 2.jpg" class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+YoHbqv6a8z6P4mk8ze8kF0R1Bq8qG2St7Z9gH6" crossorigin="anonymous"></script>
-<script>
-  $(document).ready(function() {
-    // Tambahkan event listener untuk tombol navigasi carousel
-    $('.carousel-control-next').click(function(e) {
-      e.preventDefault(); // Mencegah perilaku standar dari tombol
-      $('#carouselExampleIndicators').carousel('next');
-    });
-
-    $('.carousel-control-prev').click(function(e) {
-      e.preventDefault(); // Mencegah perilaku standar dari tombol
-      $('#carouselExampleIndicators').carousel('prev');
-    });
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
-</div>
-
-
-<div class="promo">
-<h4>Sedang Promo</h4>
-
-<?php
-include 'koneksi.php';
-
-$query = "SELECT * FROM produk WHERE promo = 'Aktif'";
-$result = mysqli_query($conn, $query);
-
-function format_rupiah($angka){
-    $rupiah = "Rp " . number_format($angka,0,',','.');
-    return $rupiah;
-}
-?>
-
-
-<div class="card-container">
-    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <div class="card">
-            <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
-                <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-                <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
-                <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+        <!-- Carousel Banner -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Third slide">
+                </div>
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    <?php } ?>
-</div>
 
+        <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Sedang Promo...</h4>
+
+        <?php
+        include 'koneksi.php';
+
+        $query = "SELECT * FROM produk WHERE promo = 'Aktif'";
+        $result = mysqli_query($conn, $query);
+
+        function format_rupiah($angka){
+            return "Rp " . number_format($angka,0,',','.');
+        }
+        ?>
+
+        <button class="btn-prev" id="btn-prev-promo" onclick="scrollCards('prev', 'promo')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-promo">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-promo" onclick="scrollCards('next', 'promo')">&#10095;</button>
+    </div>
+
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Pakaian</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Pakaian'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-pakaian" onclick="scrollCards('prev', 'pakaian')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-pakaian">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-pakaian" onclick="scrollCards('next', 'pakaian')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="pakaian.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Aksesoris</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Aksesoris'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-aksesoris" onclick="scrollCards('prev', 'aksesoris')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-aksesoris">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-aksesoris" onclick="scrollCards('next', 'aksesoris')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="aksesoris.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Koleksi</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Koleksi'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-Koleksi" onclick="scrollCards('prev', 'Koleksi')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-Koleksi">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-Koleksi" onclick="scrollCards('next', 'Koleksi')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="Koleksi.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+
+    
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Elektronik</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Elektronik'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-Elektronik" onclick="scrollCards('prev', 'Elektronik')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-Elektronik">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-Elektronik" onclick="scrollCards('next', 'Elektronik')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="Elektronik.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+
+        
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Pernak-Pernik</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Pernak-Pernik'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-Pernak-Pernik" onclick="scrollCards('prev', 'Pernak-Pernik')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-Pernak-Pernik">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-Pernak-Pernik" onclick="scrollCards('next', 'Pernak-Pernik')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="PernakPernik.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+           
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Rumah Tangga</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Rumah tangga'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-Rumahtangga" onclick="scrollCards('prev', 'Rumahtangga')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-Rumahtangga">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-Rumahtangga" onclick="scrollCards('next', 'Rumahtangga')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="Rumahtangga.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Musik</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Musik'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-Musik" onclick="scrollCards('prev', 'Musik')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-Musik">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-Musik" onclick="scrollCards('next', 'Musik')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="Musik.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+    <div class="promo">
+        <h4 style="font-weight:bold;text-align:left;">Perlengkapan sekolah</h4>
+
+        <?php
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Perlengkapan sekolah'";
+        $result = mysqli_query($conn, $query);
+        ?>
+
+<button class="btn-prev" id="btn-prev-Perlengkapansekolah" onclick="scrollCards('prev', 'Perlengkapansekolah')" disabled>&#10094;</button>
+        <div class="card-container" id="card-container-Perlengkapansekolah">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <div class="card">
+                    <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                        <?php if ($row['promo'] == 'Aktif') { ?>
+                            <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                            <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                        <?php } else { ?>
+                            <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <?php } ?>
+                        <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <button class="btn-next" id="btn-next-Perlengkapansekolah" onclick="scrollCards('next', 'Perlengkapansekolah')">&#10095;</button>
+        <div class="btn-see-more-container">
+            <a href="Perlengkapansekolah.php" class="btn-see-more">Lihat Lebih Lengkap</a>
+        </div>
+    </div>
+
+
+    <script>
+        function scrollCards(direction, category) {
+            const container = document.getElementById(`card-container-${category}`);
+            const scrollAmount = 300;
+            if (direction === 'prev') {
+                container.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            } else if (direction === 'next') {
+                container.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+            updateButtons(category);
+        }
+
+        function updateButtons(category) {
+            const container = document.getElementById(`card-container-${category}`);
+            const btnPrev = document.getElementById(`btn-prev-${category}`);
+            const btnNext = document.getElementById(`btn-next-${category}`);
+            const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+            btnPrev.disabled = container.scrollLeft === 0;
+            btnNext.disabled = container.scrollLeft >= maxScrollLeft;
+        }
+
+        document.getElementById('card-container-promo').addEventListener('scroll', () => updateButtons('promo'));
+        document.getElementById('card-container-pakaian').addEventListener('scroll', () => updateButtons('pakaian'));
+        document.getElementById('card-container-aksesoris').addEventListener('scroll', () => updateButtons('aksesoris'));
+        document.getElementById('card-container-Koleksi').addEventListener('scroll', () => updateButtons('Koleksi'));
+        document.getElementById('card-container-Elektronik').addEventListener('scroll', () => updateButtons('Elektronik'));
+        document.getElementById('card-container-Pernak-Pernik').addEventListener('scroll', () => updateButtons('Pernak-Pernik'));
+        document.getElementById('card-container-Rumahtangga').addEventListener('scroll', () => updateButtons('Rumahtangga'));
+        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Musik'));
+        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Perlengkapansekolah'));
+        window.addEventListener('load', () => {
+            updateButtons('promo');
+            updateButtons('pakaian');
+            updateButtons('aksesoris');
+            updateButtons('Koleksi');
+            updateButtons('Elektronik');
+            updateButtons('Pernak-Pernik'); 
+            updateButtons('Rumahtangga');
+            updateButtons('Musik');
+            updateButtons('Perlengkapansekolah');
+        });
+    </script>
 
     </main>
     <footer class="footer-container">
@@ -605,5 +924,14 @@ function format_rupiah($angka){
 
     </footer>
 </body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
 
 </html>

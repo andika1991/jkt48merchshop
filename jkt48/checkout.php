@@ -752,34 +752,6 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
         <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
         <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
     </div>
-    
- 
-
-    <!-- Modal konfirmasi Hapus-->
-    <div id="confirmationModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="hideConfirmation()">&times;</span>
-            <p>Apakah Anda yakin ingin Checkout Produk?</p>
-            <button onclick="checkout()">Ya</button>
-            <button onclick="hideConfirmation()">Batal</button>
-        </div>
-    </div>
-
-    <script>
-    function showConfirmation() {
-        document.getElementById('confirmationModal').style.display = 'block';
-    }
-
-    function hideConfirmation() {
-        document.getElementById('confirmationModal').style.display = 'none';
-    }
-
-    function checkout() {
-        window.location.href = 'proses_checkout.php?id_produk=<?php echo $id_produk_dibeli_string; ?>';
-    }
-    </script>
-
-
 <div>
     <h4>Form Checkout</h4>
     <form action="proses_checkout.php" method="post">

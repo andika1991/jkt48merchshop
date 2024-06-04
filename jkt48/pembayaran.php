@@ -795,10 +795,10 @@ if ($result_metode_pembayaran_dipilih && mysqli_num_rows($result_metode_pembayar
 
 
 <?php
-// Atur zona waktu PHP ke Indonesia
+
 date_default_timezone_set('Asia/Jakarta');
 
-// Fungsi untuk menghasilkan invoice_id
+
 function generateInvoiceID($conn) {
     // Lakukan pengambilan data terakhir
     $query_last_invoice = "SELECT MAX(CAST(SUBSTRING(invoice_id, 8) AS UNSIGNED)) AS last_id FROM pesanan";

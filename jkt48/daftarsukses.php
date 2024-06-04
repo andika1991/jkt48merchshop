@@ -129,9 +129,6 @@ nav a:hover {
     background-color: #ddd;
 }
 
-
-
-
         nav ul li a {
             background-color: #FFFFFF;
             color: #111111;
@@ -228,226 +225,78 @@ h5 {
 .sosmed ul li:last-child {
     margin-right: 0; 
 }
-.section1 {
-    position: relative;
-    width: 100%;
-    height: 100vh; 
-    overflow: hidden;
-}
 
-.section1 video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 20%;
-    z-index: -1;
-    object-fit: cover;
-}
-
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size:30px;
-    border-radius: 5px;
-    text-decoration: none;
-    background: linear-gradient(90deg, #0085FF 0%, #0047AB 100%); 
-    color: white;
-    position: absolute;
-    overflow: hidden;
-    margin-top:80px;
-    margin-left: 500px; 
-}
-
-
-.button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
-    transition: left 0.3s;
-}
-
-.button:hover::after {
-    left: 100%;
-}
-
-.button:hover {
-    background-position: right center;
-    color: #E50112; 
-    transition: background-position 0.3s;
-}
-
-.section2 {
-    margin-bottom:70px;
-}
-
-.section3 {
-    background-color:#FF4655;
-    padding:0px 20px;
-}
-
-
-.section4 {
-
-    display: flex;
-  
-}
-
-.section4 img {
-    
-  margin-left: 20px;
-}
-
-.kebanggaan{
-    position:absolute;
-    margin-top:-17px;
-}
-
-.section5{
-    background-color:#FF4655 
-}
-
-.card {
-    width: 18rem;
-    border: 1px solid #ccc;
-    margin-left:10px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.card-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-
-
-body {
-    background: linear-gradient(135deg, #FFD700, #FF6347);
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-.login-container {
-            position: absolute;
-            top: 60%;
-            right: 6%;
-            transform: translateY(-50%);
-            max-width: 600px;
-            width: 100%;
-            padding: 50px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease;
+h1 {
+            color: #4CAF50;
         }
-
-        /* Header styling */
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 24px;
+        p {
+            margin: 1em 0;
         }
-
-        /* Form styling */
-        .form-label {
-            color: #555;
-            font-size: 16px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-            position: relative;
-        }
-
-        .input-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        .toggle-password {
-            position: absolute;
-            top: 70%;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 18px;
-            color: #888;
-        }
-
-        .btn-primary {
-            display: block;
-            width: 100%;
-            padding: 12px;
+        .btn-login {
+            display: inline-block;
+            padding: 0.5em 2em;
+            font-size: 1em;
+            color: #fff;
+            background-color: #4CAF50;
             border: none;
             border-radius: 5px;
-            background-color: #FF6347;
-            color: #fff;
-            font-size: 18px;
+            text-decoration: none;
             cursor: pointer;
-            transition: background-color 0.3s;
+        }
+        .btn-login:hover {
+            background-color: #45a049;
         }
 
-        .btn-primary:hover {
-            background-color: #FF4500;
-        }
+
+
+
+
+
+
+
+
+
+
 
 main {
-    padding-bottom: 530px;
+    padding-bottom: 200px;
 }
 
-
+main {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2em 3em;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 0.5em;
+        }
+        p {
+            margin: 1em 0;
+            font-size: 1.2em;
+        }
+        .btn-login {
+            display: inline-block;
+            padding: 0.75em 2em;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-login:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+        .btn-login:active {
+            background-color: #3e8e41;
+            transform: translateY(1px);
+        }
 
 
     </style>
@@ -492,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('active');
     });
 
-    // Menyembunyikan submenu saat kategori barang tidak diklik
+    
     document.addEventListener('click', function(event) {
         if (!kategoriTrigger.contains(event.target)) {
             submenu.classList.remove('active');
@@ -505,62 +354,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-        <div class="imgjkt">
-            <img src="asset/jkt48.jpeg" style="width:600px;height:530px;position:absolute; margin-top:0px;">
+    <div class="container">
+            <h1>Pendaftaran Sukses</h1>
+            <p>Silahkan login ke akun anda.</p>
+            <a href="loginuser.php" class="btn-login">Login</a>
         </div>
-        <div class="login-container">
-            <h2>Daftar Akun</h2>
-            <form id="registrationForm" action="proses_daftar.php" method="POST" onsubmit="return validateForm()">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username:</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3 input-wrapper">
-                    <label for="password" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
-                </div>
-                <div class="mb-3 input-wrapper">
-                    <label for="confirm-password" class="form-label">Confirm Password:</label>
-                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
-                    <span class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">👁️</span>
-                </div>
-                <div id="error-message" class="error"></div>
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-        </div>
-    </main>
-    <script>
-        function togglePasswordVisibility(id) {
-            var passwordField = document.getElementById(id);
-            var toggleIcon = passwordField.nextElementSibling;
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleIcon.textContent = "🙈";
-            } else {
-                passwordField.type = "password";
-                toggleIcon.textContent = "👁️";
-            }
-        }
-
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirm-password").value;
-            var errorMessage = document.getElementById("error-message");
-
-            if (password !== confirmPassword) {
-                errorMessage.textContent = "Passwords do not match.";
-                return false;
-            }
-
-            errorMessage.textContent = "";
-            return true;
-        }
-    </script>
+ </main>
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">

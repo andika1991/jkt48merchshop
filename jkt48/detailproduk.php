@@ -599,23 +599,20 @@ if ($row = mysqli_fetch_assoc($result)) {
 
 <div class="detailproduk">
 
+<div class="detailproduk">
     <img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>">
     <h2><?php echo $row['nama_produk']; ?></h2>
     <p><?php echo $row['deskripsi_produk']; ?></p>
     <p class="category">Kategori: <?php echo $row['kategori_produk']; ?></p>
-    <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+    <?php if($row['promo'] == 'Aktif') : ?>
+        <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+    <?php endif; ?>
+    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
     <a href="#" class="btn">Beli Sekarang</a>
-    <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn">Tambahkan Ke Keranjang</a>
+    <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; }?>" class="btn">Tambahkan Ke Keranjang</a>
 </div>
-    <?php
-} else {
- 
-    echo "<p>Produk tidak ditemukan.</p>";
-}
 
-
-
+<?php
 $query = "
     SELECT penilaian.*, pengguna.username
     FROM penilaian 
