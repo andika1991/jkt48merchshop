@@ -24,7 +24,7 @@ include 'session.php';
     padding-top: 20px;
     transition: width 0.3s;
     width: 250px;
-    height: 100vh; 
+    height: auto;
 
 }
 
@@ -116,7 +116,7 @@ include 'session.php';
 
     margin-top: 40px;
     margin-left: 30px;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .tambahdata:hover {
@@ -129,16 +129,8 @@ include 'session.php';
             font-size:20px;
            color:white;
         }
-     footer {
-position:fixed;
-    bottom: 0; 
-    left: 0;
-    width: 100%; 
-    background-color: #E50112; 
-   color:white;
-    padding: 10px; 
-    text-align: center; 
-}
+    
+
 
     </style>
 </head>
@@ -165,13 +157,13 @@ position:fixed;
                 </a>
             </li>
             <li>
-                <a href="manajemenproduk.php" class="nav-link text-white">
+                <a href="manajemenproduk.php" class="nav-link text-white " >
                     <span class="icon">&#128722;</span>
                     <span class="text">Manajemen Products</span>
                 </a>
             </li>
             <li>
-                <a href="manajemenpengguna.php" class="nav-link text-white">
+                <a href="manajemenpengguna.php" class="nav-link text-white ">
                     <span class="icon">&#128101;</span>
                     <span class="text">Manajemen Pengguna</span>
                 </a>
@@ -191,10 +183,118 @@ position:fixed;
         </ul>
     </div>
 
+
   <main>
 
- <p>Masih dalam pengembangan</p>
 
+
+  <div class="container mt-5">
+        <h2 class="mb-4">Kelola Pesanan</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Waktu Order </th>
+                        <th>Bukti Bayar</th>
+                        <th>Status Pesanan</th>
+                        <th>Total Harga</th>
+                        <th>Metode Pembayaran</th>
+                        <th>Order By</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include 'koneksi.php';
+
+                    $query = "SELECT pesanan.*, pengguna.username, metodepembayaran.nama_metodepembayaran FROM pesanan JOIN pengguna ON pesanan.id_pengguna = pengguna.id_pengguna JOIN metodepembayaran ON pesanan.id_metodepembayaran = metodepembayaran.id_metodepembayaran
+                             ORDER BY pesanan.id_pesanan DESC;";
+                    $result = mysqli_query($conn, $query);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>" . $row["invoice_id"] . "</td>";
+                            echo "<td>" . $row["timeorder"] . "</td>";
+                
+                            if (!empty($row["bukti_bayar"])) {
+                               
+                                echo "<td><a href='" . $row["bukti_bayar"] . "' target='_blank'>Lihat Bukti Bayar</a></td>";
+                            } else {
+                              
+                                echo "<td><button onclick='showAlert()'>Belum mengirimkan bukti</button></td>";
+                            }
+                            echo "<td>";
+                    echo "<select id='status_pesanan" . $row["id_pesanan"] . "' onchange='updateStatus(" . $row["id_pesanan"] . ")'>";
+                    echo "<option value='Menunggu Pembayaran'" . ($row["status_pesanan"] == "Menunggu Pembayaran" ? " selected" : "") . ">Menunggu Pembayaran</option>";
+                    echo "<option value='Diproses'" . ($row["status_pesanan"] == "Diproses" ? " selected" : "") . ">Diproses</option>";
+                    echo "<option value='Dikirim'" . ($row["status_pesanan"] == "Dikirim" ? " selected" : "") . ">Dikirim</option>";
+                    echo "<option value='Diterima Pelanggan'" . ($row["status_pesanan"] == "Diterima Pelanggan" ? " selected" : "") . ">Diterima Pelanggan</option>";
+                    echo "<option value='Cenceled'" . ($row["status_pesanan"] == "Cenceled" ? " selected" : "") . ">Cenceled</option>";
+                    echo "</select>";
+                    echo "</td>";
+                            echo "<td>" . $row["total_harga"] . "</td>";
+                            echo "<td>" . $row["nama_metodepembayaran"] . "</td>";
+                            echo "<td>" . $row["username"] . "</td>";
+                        
+                          
+                            
+                            echo "<td>
+                            <a href='detailpesanan.php?id=" . $row["id_pesanan"] . "' class='btn btn-primary btn-sm btn-edit'>Detail</a>
+                           
+                        </td>";
+                        
+                        
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8' class='text-center'>0 results</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function updateStatus(id_pesanan) {
+        var status_pesanan = $("#status_pesanan" + id_pesanan).val(); 
+
+        var confirmation = confirm("Apakah Anda yakin ingin mengupdate status pesanan menjadi '" + status_pesanan + "'?");
+
+        if (confirmation) {
+           
+            var formData = new FormData();
+            formData.append('id_pesanan', id_pesanan);
+            formData.append('status_pesanan', status_pesanan);
+
+         
+            fetch('update_status_pesanan.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ada kesalahan saat memperbarui status pembayaran.');
+                    }
+                   
+                })
+                .catch(error => {
+                    console.error('Terjadi kesalahan:', error);
+                 
+                });
+        } else {
+            var previousValue = $("#status_pesanan" + id_pesanan).data("previous-value"); 
+            $("#status_pesanan" + id_pesanan).val(previousValue); 
+        }
+    }
+</script>
 
     
 
@@ -214,10 +314,10 @@ position:fixed;
 </script>
 
 <script>
-    function confirmDelete(id_produk) {
+    function confirmDelete(id_pengguna) {
         if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
             // Redirect to delete action with product ID
-            window.location.href = "delete_produk.php?id_produk=" + id_produk;
+            window.location.href = "delete_pengguna.php?id_pengguna=" + id_pengguna;
         }
     }
 </script>

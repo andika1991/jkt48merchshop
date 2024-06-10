@@ -24,7 +24,7 @@ include 'session.php';
     padding-top: 20px;
     transition: width 0.3s;
     width: 250px;
-    height: auto; /* Tinggi sidebar mengikuti tinggi dari elemen parent-nya */
+    height: 100vh;
 
 }
 
@@ -116,12 +116,12 @@ include 'session.php';
 
     margin-top: 40px;
     margin-left: 30px;
-    transition: background-color 0.3s, transform 0.3s; /* Efek transisi saat hover */
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .tambahdata:hover {
-    background-color: #0056b3; /* Warna latar saat dihover */
-    transform: scale(1.02); /* Memperbesar tombol sedikit saat dihover */
+    background-color: #0056b3; 
+    transform: scale(1.02); 
 }
 
         
@@ -129,16 +129,8 @@ include 'session.php';
             font-size:20px;
            color:white;
         }
-     footer {
-position:fixed;
-    bottom: 0; /* Menempatkan footer di bagian bawah layar */
-    left: 0;
-    width: 100%; /* Memastikan lebar footer sesuai dengan lebar layar */
-    background-color: #E50112; /* Warna latar belakang footer */
-   color:white;
-    padding: 10px; /* Ruang di sekitar konten footer */
-    text-align: center; /* Teks rata tengah di dalam footer */
-}
+    
+
 
     </style>
 </head>
@@ -165,13 +157,13 @@ position:fixed;
                 </a>
             </li>
             <li>
-                <a href="manajemenproduk.php" class="nav-link text-white">
+                <a href="manajemenproduk.php" class="nav-link text-white " aria-current="page">
                     <span class="icon">&#128722;</span>
                     <span class="text">Manajemen Products</span>
                 </a>
             </li>
             <li>
-                <a href="manajemenpengguna.php" class="nav-link text-white">
+                <a href="manajemenpengguna.php" class="nav-link active">
                     <span class="icon">&#128101;</span>
                     <span class="text">Manajemen Pengguna</span>
                 </a>
@@ -183,7 +175,7 @@ position:fixed;
                 </a>
             </li>
             <li>
-                <a href="page.php" class="nav-link active" aria-current="page">
+                <a href="page.php" class="nav-link text-white">
                     <span class="icon">&#9881;</span>
                     <span class="text">Artikel</span>
                 </a>
@@ -191,20 +183,22 @@ position:fixed;
         </ul>
     </div>
 
+
   <main>
 
-  <div class="tambahdata">
-  <i class="bi bi-plus-circle"></i>
-  <a href="tambahpage.php" class="btn">Tambah Data</a> </div>
+
+
   <div class="container mt-5">
-        <h2 class="mb-4">Berita/Artikel</h2>
+        <h2 class="mb-4">Manajemen Pengguna</h2>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
-                        <th>No </th>
-                        <th>Judul</th>
-                        <th>Banner</th>
+                        <th>Invoice ID</th>
+                        <th>Waktu Order </th>
+                        <th>Bukti Bayar</th>
+                        <th>Status Pesanan</th>
+                        <th>Order By</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -212,22 +206,25 @@ position:fixed;
                     <?php
                     include 'koneksi.php';
 
-                    $query = "SELECT * FROM artikel ORDER BY id_artikel DESC";
-
+                    $query = "SELECT pesanan.*, pengguna.username, metodepembayaran.nama_metodepembayaran FROM pesanan JOIN pengguna ON pesanan.id_pengguna = pengguna.id_pengguna JOIN metodepembayaran ON pesanan.id_metodepembayaran = metodepembayaran.id_metodepembayaran
+                             ORDER BY pesanan.id_pesanan DESC;";
                     $result = mysqli_query($conn, $query);
 
                     if (mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
-                            echo "<td>" . $row["id_artikel"] . "</td>";
-                            echo "<td>" . $row["judul"] . "</td>";
-                            echo "<td><img src='" . $row["gambar_artikel"] . "'  alt='Foto Produk' style='max-width: 1000px; max-height: 100px; border-radius:4px;' ></td>";
-                            
+                            echo "<td>" . $row["invoice_id"] . "</td>";
+                            echo "<td>" . $row["username"] . "</td>";
+                
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td> **** </td>";
+                          
                             
                             echo "<td>
-                            <a href='editartikel.php?id=" . $row["id_artikel"] . "' class='btn btn-primary btn-sm btn-edit'>Edit</a>
-                            <button class='btn btn-danger btn-sm btn-delete' onclick='confirmDelete(" . $row["id_artikel"] . ")'>Delete</button>
+                            <a href='editpengguna.php?id=" . $row["id_pengguna"] . "' class='btn btn-primary btn-sm btn-edit'>Edit</a>
+                            <button class='btn btn-danger btn-sm btn-delete' onclick='confirmDelete(" . $row["id_pengguna"] . ")'>Delete</button>
                         </td>";
+                        
                         
                             echo "</tr>";
                         }
@@ -240,6 +237,76 @@ position:fixed;
         </div>
     </div>
     </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Data Pengguna</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editId" name="edit-id">
+                        <div class="form-group">
+                            <label for="editUsername">Username:</label>
+                            <input type="text" class="form-control" id="editUsername" name="edit-username" >
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email:</label>
+                            <input type="email" class="form-control" id="editEmail" name="edit-email" >
+                        </div>
+                        <div class="form-group">
+                            <label for="password">password:</label>
+                            <input type="password" class="form-control" id="password" name="password" >
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Fill modal fields with user data when the edit button is clicked
+        $('.edit-btn').click(function() {
+            var id = $(this).data('id');
+            var username = $(this).data('username');
+            var email = $(this).data('email');
+            var password = $(this).data('password');
+            $('#editId').val(id);
+            $('#editUsername').val(username);
+            $('#editEmail').val(email);
+            $('#password').val(password);
+        });
+
+        // Handle form submission for editing user data
+        $('#editForm').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+    type: "POST",
+    url: "proses_edit_pengguna.php",
+    data: formData,
+    success: function(response) {
+        console.log("AJAX request successful"); // Add this line
+        // Rest of the code...
+    },
+    error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+    }
+});
+
+        });
+    });
+</script>
 
 
     
@@ -260,10 +327,10 @@ position:fixed;
 </script>
 
 <script>
-    function confirmDelete(id_artikel) {
-        if (confirm("Apakah Anda yakin ingin menghapus Page ini?")) {
-         
-            window.location.href = "delete_page.php?id=" + id_artikel;
+    function confirmDelete(id_pengguna) {
+        if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
+            // Redirect to delete action with product ID
+            window.location.href = "delete_pengguna.php?id_pengguna=" + id_pengguna;
         }
     }
 </script>

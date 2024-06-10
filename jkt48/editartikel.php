@@ -22,7 +22,7 @@ include 'session.php';
         }
     .sidebar {
       
-   height:auto;
+   height:100vh;
     background-color: #343a40;
     padding-top: 20px;
     transition: width 0.3s;
@@ -160,9 +160,9 @@ button:hover {
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="#" class="nav-link active" aria-current="page">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Kode diskon</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>
@@ -204,6 +204,8 @@ if(isset($_GET['id'])) {
     exit();
 }
 ?>
+
+<h2 style="margin-top:30px;margin-left:100px;">Edit Artikel</h2>
   <form method="POST" action="proseseditartikel.php" enctype="multipart/form-data" >
   <input type="hidden" name="id_artikel" value="<?php echo $id_artikel; ?>">
     <div class="form-group">

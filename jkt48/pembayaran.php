@@ -765,14 +765,13 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
     <h2>Silahkan Lakukan Pembayaran</h2>
  
     <?php
-// Ambil ID metode pembayaran yang dipilih pengguna
-$id_metode_pembayaran_dipilih = $_GET['id_metodepembayaran']; // Atau cara lain sesuai dengan implementasi Anda
 
-// Query untuk mendapatkan detail metode pembayaran yang dipilih
+
+
 $query_metode_pembayaran_dipilih = "SELECT * FROM metodepembayaran WHERE id_metodepembayaran = $id_metode_pembayaran_dipilih";
 $result_metode_pembayaran_dipilih = mysqli_query($conn, $query_metode_pembayaran_dipilih);
 
-// Periksa apakah ada hasil dari query
+
 if ($result_metode_pembayaran_dipilih && mysqli_num_rows($result_metode_pembayaran_dipilih) > 0) {
     $row_metode_pembayaran_dipilih = mysqli_fetch_assoc($result_metode_pembayaran_dipilih);
     ?>
@@ -784,7 +783,7 @@ if ($result_metode_pembayaran_dipilih && mysqli_num_rows($result_metode_pembayar
 </div>
 
 <?php } else {
-    // Tampilkan pesan jika metode pembayaran tidak ditemukan
+
     echo "Metode pembayaran tidak ditemukan.";
 }
 ?>
@@ -800,25 +799,25 @@ date_default_timezone_set('Asia/Jakarta');
 
 
 function generateInvoiceID($conn) {
-    // Lakukan pengambilan data terakhir
+
     $query_last_invoice = "SELECT MAX(CAST(SUBSTRING(invoice_id, 8) AS UNSIGNED)) AS last_id FROM pesanan";
     $result_last_invoice = mysqli_query($conn, $query_last_invoice);
 
-    // Ambil nilai terakhir
+    
     $row_last_invoice = mysqli_fetch_assoc($result_last_invoice);
     $last_id = $row_last_invoice['last_id'];
 
-    // Jika tidak ada nilai terakhir, mulai dari 1
+    
     if($last_id === null) {
         $last_id = 1;
     } else {
         $last_id += 1;
     }
 
-    // Format nomor urut menjadi string dengan panjang 6 karakter
+  
     $formatted_id = str_pad($last_id, 6, '0', STR_PAD_LEFT);
 
-    // Kembalikan nilai invoice_id
+
     return 'JKTMERC' . $formatted_id;
 }
 
@@ -828,25 +827,37 @@ function generateInvoiceID($conn) {
     $total_pembayaran = $_GET['harga'];
     $id_metode = $_GET['id_metodepembayaran'];
 
-    // Waktu saat ini
+
     $timeorder = date('Y-m-d H:i:s');
 
-    // Waktu expired (24 jam dari waktu saat ini)
+ 
     $expired_time = date('Y-m-d H:i:s', strtotime('+24 hours'));
 
-    // Generate invoice_id
     $invoice_id = generateInvoiceID($conn);
 
-    // Query untuk memasukkan data ke dalam tabel pesananproduk
+  
     $query_insert = "INSERT INTO pesanan (invoice_id, timeorder, total_harga,status_pesanan, id_pengguna, id_datacheckout, id_metodepembayaran, expired)
                      VALUES ('$invoice_id', '$timeorder', '$total_pembayaran','Menunggu Pembayaran', '$id_pengguna', '$id_datacheckout', '$id_metode', '$expired_time')";
 
-    // Eksekusi query INSERT
+   
     if(mysqli_query($conn, $query_insert)) {
         echo "Pesanan berhasil dimasukkan.";
     } else {
         echo "Error: " . $query_insert . "<br>" . mysqli_error($conn);
     }
+
+ 
+$query_check_expired = "SELECT * FROM pesanan WHERE status_pesanan = 'Menunggu Pembayaran' AND expired <= NOW()";
+$result_expired = mysqli_query($conn, $query_check_expired);
+
+while ($row_expired = mysqli_fetch_assoc($result_expired)) {
+    $expired_invoice_id = $row_expired['invoice_id'];
+    
+    $query_update_expired = "UPDATE pesanan SET status_pesanan = 'Expired' WHERE invoice_id = '$expired_invoice_id'";
+    mysqli_query($conn, $query_update_expired);
+ 
+}
+
 
 ?>
  <h2>Upload Bukti Pembayaran</h2>

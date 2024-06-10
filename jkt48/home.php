@@ -399,10 +399,10 @@ h5 {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 10px;
+            padding: 8px;
             cursor: pointer;
             z-index: 1;
-            border-radius: 50%;
+            border-radius: 10%;
         }
         .btn-prev {
             left: -20px;
@@ -430,6 +430,18 @@ h5 {
         .btn-see-more:hover {
             background-color: #218838;
         }
+
+        #search {
+    padding: 9px;
+    width:330px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+#search-results {
+    margin-top: 20px;
+}
     </style>
 </head>
 <body>
@@ -438,7 +450,16 @@ h5 {
             <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
         </div>
         <nav>
+
     <ul>
+
+    <li>
+                    <input type="text" id="search" placeholder="Cari produk...">
+                </li>
+                <main>
+        <div id="search-results" class="search-results"></div>
+    </main>
+
         <li><a href="#" class="kategori-trigger">Kategori Barang</a>
         <ul class="submenu">
     <li><a href="Pakaian.php"><i class="fas fa-tshirt"></i> Pakaian</a></li>
@@ -467,7 +488,11 @@ h5 {
             echo "<li><a href='daftar.php'>Daftar</a></li>";
         }
         ?>
+
+
+
     </ul>
+
 </nav>
 
 <script>
@@ -932,6 +957,32 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val();
+            if (query.length > 0) {
+                $.ajax({
+                    url: 'search.php',
+                    method: 'GET',
+                    data: { q: query },
+                    success: function(data) {
+                        $('#search-results').html(data).show();
+                    }
+                });
+            } else {
+                $('#search-results').hide();
+            }
+        });
+
+        $(document).click(function(event) {
+            if (!$(event.target).closest('#search, #search-results').length) {
+                $('#search-results').hide();
+            }
+        });
+    });
+</script>
 
 
 </html>

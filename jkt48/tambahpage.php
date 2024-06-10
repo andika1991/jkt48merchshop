@@ -209,14 +209,14 @@ button:hover {
             <li>
                 <a href="#" class="nav-link active">
                     <span class="icon">&#9881;</span>
-                    <span class="text">Page</span>
+                    <span class="text">Artikel</span>
                 </a>
             </li>
         </ul>
     </div>
 
   <main>
-
+<h2 style="padding:20px; margin-left:30px;margin-top:40px;">Tambah Artikel Baru</h2>
   <form method="POST" action="prosestambahpage.php"  enctype="multipart/form-data">
     <div class="form-group">
         <label for="judul_artikel">Judul Artikel:</label>
