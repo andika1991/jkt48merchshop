@@ -10,7 +10,7 @@ if (isset($_SESSION['email'])) {
     $email_pengguna = $_SESSION['email'];
 
    
-    $query = "SELECT id_pengguna, username FROM pengguna WHERE email = '$email_pengguna'";
+    $query = "SELECT * FROM pengguna WHERE email = '$email_pengguna'";
 
 
     $result = mysqli_query($conn, $query);
@@ -22,7 +22,7 @@ if (isset($_SESSION['email'])) {
         $id_pengguna = $row['id_pengguna'];
         $nama_pengguna = $row['username'];
         $_SESSION['id_pengguna'] = $id_pengguna;
-        $_SESSION['nama_pengguna'] = $nama_pengguna;
+        $_SESSION['username'] = $nama_pengguna;
     } else {
         
         $id_pengguna = 0; 

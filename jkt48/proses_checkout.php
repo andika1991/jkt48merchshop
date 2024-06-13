@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php';
+
 $id_pengguna = $_SESSION['id_pengguna'];
 $nama_penerima = mysqli_real_escape_string($conn, $_POST['nama']);
 $alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
@@ -12,50 +13,39 @@ $jumlah_produk = isset($_POST['jumlah']) ? $_POST['jumlah'] : array();
 mysqli_begin_transaction($conn);
 
 try {
-
-    $query_hapus_keranjang = "DELETE FROM keranjang WHERE id_pengguna = ?";
-    $stmt_hapus_keranjang = mysqli_prepare($conn, $query_hapus_keranjang);
-    mysqli_stmt_bind_param($stmt_hapus_keranjang, 'i', $id_pengguna);
-    mysqli_stmt_execute($stmt_hapus_keranjang);
-
-    foreach ($id_produk_dibeli as $index => $id_produk) {
-        $jumlah = $jumlah_produk[$index];
-
-        $query_daftarprodukpesanan = "INSERT INTO daftarprodukpesanan (id_produk, id_pengguna, jumlah) VALUES (?, ?, ?)";
-        $stmt_daftarprodukpesanan = mysqli_prepare($conn, $query_daftarprodukpesanan);
-        mysqli_stmt_bind_param($stmt_daftarprodukpesanan, 'iii', $id_produk, $id_pengguna, $jumlah);
-        mysqli_stmt_execute($stmt_daftarprodukpesanan);
+    // Hapus keranjang
+    $query_hapus_keranjang = "DELETE FROM keranjang WHERE id_pengguna = $id_pengguna";
+    if (!mysqli_query($conn, $query_hapus_keranjang)) {
+        throw new Exception(mysqli_error($conn));
     }
 
-    
-    $query_checkout = "INSERT INTO datacheckout (id_pengguna, nama_penerima, alamat_detail, total_pembayaran) VALUES (?, ?, ?, ?)";
-    $stmt_checkout = mysqli_prepare($conn, $query_checkout);
-    mysqli_stmt_bind_param($stmt_checkout, 'isss', $id_pengguna, $nama_penerima, $alamat, $total_pembayaran);
-    mysqli_stmt_execute($stmt_checkout);
-
+    // Insert into datacheckout
+    $query_checkout = "INSERT INTO datacheckout (id_pengguna, nama_penerima, alamat_detail, total_pembayaran) VALUES ($id_pengguna, '$nama_penerima', '$alamat', '$total_pembayaran')";
+    if (!mysqli_query($conn, $query_checkout)) {
+        throw new Exception(mysqli_error($conn));
+    }
 
     $id_checkout = mysqli_insert_id($conn);
 
-
-    $query_detail_checkout = "INSERT INTO detail_checkout (id_datacheckout, id_produk, jumlah) VALUES (?, ?, ?)";
-    $stmt_detail_checkout = mysqli_prepare($conn, $query_detail_checkout);
-
+    // Insert into detail_checkout
+    $id_detail = 0;
+    
     foreach ($id_produk_dibeli as $index => $id_produk) {
-        $jumlah = $jumlah_produk[$index];
-        mysqli_stmt_bind_param($stmt_detail_checkout, 'iii', $id_checkout, $id_produk, $jumlah);
-        mysqli_stmt_execute($stmt_detail_checkout);
+        $jumlah = !empty($jumlah_produk[$index]) ? $jumlah_produk[$index] : 1; // Default value of 1 if not provided
+        $query_detail_checkout = "INSERT INTO detail_checkout (id_datacheckout, id_produk, jumlah) VALUES ($id_checkout, $id_produk, $jumlah)";
+        if (!mysqli_query($conn, $query_detail_checkout)) {
+            throw new Exception(mysqli_error($conn));
+        }
+
+        $id_detail = mysqli_insert_id($conn);  // Get the last inserted id_detail
     }
 
     mysqli_commit($conn);
 
-
-header("Location: pilih_pembayaran.php?id_datacheckout=$id_checkout");
-
+    header("Location: pilih_pembayaran.php?id_datacheckout=$id_checkout&id_detail=$id_detail");
     exit;
 } catch (Exception $e) {
-    
     mysqli_rollback($conn);
     echo "Terjadi kesalahan: " . $e->getMessage();
 }
-
 ?>

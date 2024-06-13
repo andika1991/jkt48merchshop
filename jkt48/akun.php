@@ -1,5 +1,25 @@
 <?php
 include 'session_user.php';
+
+
+// Ambil id_pengguna dari sesi
+$id_pengguna = $_SESSION['id_pengguna'];
+
+// Buat kueri SQL untuk mengambil data pengguna berdasarkan id_pengguna
+$query = "SELECT * FROM Pengguna WHERE id_pengguna = $id_pengguna";
+
+// Jalankan kueri
+$result = mysqli_query($conn, $query);
+
+// Periksa apakah kueri berhasil dijalankan
+if ($result) {
+    // Periksa apakah ada baris yang dikembalikan
+    if (mysqli_num_rows($result) > 0) {
+        // Ambil data pengguna dari hasil kueri
+        $row = mysqli_fetch_assoc($result);
+        
+        // Tentukan URL gambar profil
+        $foto_profil = !empty($row['fotoprofil']) ? $row['fotoprofil'] : 'placeholder.jpg'; // placeholder.jpg adalah gambar default jika foto profil tidak tersedia
 ?>
 
 
@@ -235,112 +255,81 @@ h5 {
     margin-right: 0; 
 }
 
-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .total {
+
+
+
+main {
+    padding-bottom:70px;
+}
+
+
+.profil {
+    padding:20px;
+    width: 450px;
+    height:350px;
+    margin: 20px; /* Add margin for some spacing around the profile card */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center; /* Ensure text is left-aligned */
+    position: relative; /* Make the position relative to control its exact placement */
+}
+
+.profil h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.profil .avatar {
+    width: 120px; /* Set the size of the avatar image */
+    height: 120px;
+    border-radius: 50%; /* Make the avatar image round */
+    display: block; /* Ensure the image is treated as a block element */
+    margin-bottom: 15px;
+    margin-left:130px;
+  
+}
+
+.profil .info {
+    margin-bottom: 10px;
+    font-size: 23px;
+}
+
+.btn-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+   .order-status {
+            display: flex;
+            gap: 65px;
             margin-top: 20px;
-            text-align: right;
+            position:absolute;margin-top:-300px;margin-left:630px
         }
-        .btn-checkout {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .order-status img {
+            width: 50px; 
+            height: 50px;
             cursor: pointer;
         }
-        .btn-checkout:hover {
-            background-color: #45a049;
+        .order-status a {
+            text-align: center;
+            text-decoration: none;
+            color: black;
         }
-
-
-        /* CSS untuk modal konfirmasi */
-.modal {
-  display: none; /* Sembunyikan modal secara default */
-  position: fixed; /* Tetap di posisi */
-  z-index: 1; /* Atur z-index agar modal muncul di atas konten lain */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4); /* Warna latar belakang semi-transparan */
-}
-
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Lebar konten modal */
-  max-width: 400px; /* Lebar maksimum konten modal */
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-.modal-content button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal-content button:hover {
-  background-color: #ddd;
-}
-
-
-.modal-content p {
-  margin-bottom: 15px;
-}
-
-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+     
+        .order-status img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
         }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="textarea"] ,input[type="text"]  {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
-
     </style>
 </head>
 <body>
@@ -350,7 +339,6 @@ form {
         <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
     </a>
 </div>
-
         <nav>
 
     <ul>
@@ -419,91 +407,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
+    <div class="profil">
+        <h2>Profil Pengguna</h2>
+        <!-- Tampilkan gambar profil pengguna jika tersedia -->
+        <img class="avatar" src="<?php echo $foto_profil; ?>" alt="Gambar Profil">
+        <div class="info">
+            <strong>Nama Pengguna:</strong> <?php echo $row['username']; ?>
+        </div>
+        <div class="info">
+            <strong>Email:</strong> <?php echo $row['email']; ?>
+        </div>
+        <!-- Tombol Edit Profil -->
+        <a class="btn-edit" href="editprofil.php">Edit Profil</a>
+    </div>
     <?php
-
-
-$id_pengguna = $_SESSION['id_pengguna']; // Ambil ID pengguna dari sesi
-
-$query = "SELECT keranjang.*, produk.nama_produk, produk.harga_normal, produk.harga_promo, produk.promo, produk.foto_produk
-          FROM keranjang 
-          JOIN produk ON keranjang.id_produk = produk.id_produk 
-          WHERE keranjang.id_pengguna = $id_pengguna";
-$result = mysqli_query($conn, $query);
-
-function format_rupiah($angka) {
-    return "Rp " . number_format($angka, 0, ',', '.');
-}
-
-$id_produk_dibeli = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $id_produk_dibeli[] = $row['id_produk'];
-}
-$id_produk_dibeli_string = implode(',', $id_produk_dibeli);
-mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-
-$total_harga = 0;
-while ($row = mysqli_fetch_assoc($result)) {
-    $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
-    $total_harga += $harga_produk * $row['jumlah'];
-}
-
-$biaya_ongkir = 0;
-if ($total_harga < 100000) {
-    $biaya_ongkir = $total_harga * 0.04;
-} elseif ($total_harga <= 500000) {
-    $biaya_ongkir = $total_harga * 0.08;
-} elseif ($total_harga <= 1000000) {
-    $biaya_ongkir = $total_harga * 0.12;
+    } else {
+        echo "Profil pengguna tidak ditemukan.";
+    }
 } else {
-    $biaya_ongkir = $total_harga * 0.17;
+    echo "Terjadi kesalahan: " . mysqli_error($conn);
 }
-
-$total_pembayaran = $total_harga + $biaya_ongkir;
 ?>
 
-
-    <h2>Checkout Produk</h2>
-    <table>
-        <tr>
-            <th>Gambar</th>
-            <th>Nama Produk</th>
-            <th>Jumlah</th>
-            <th>Harga</th>
-        </tr>
-        <?php
-        mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
-                <td><?php echo $row['nama_produk']; ?></td>
-                <td><?php echo $row['jumlah']; ?></td>
-                <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-    
-    <div class="total">
-        <p>Total Harga: <?php echo format_rupiah($total_harga); ?></p>
-        <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
-        <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
+<h3 style="position:absolute;margin-top:-350px;margin-left:680px; font-weight:bold;">Riwayat Pesanan</h3>
+<div class="order-status">
+        <a href="riwayatblmbayar.php">
+            <img src="asset/blmbayar.png" alt="Belum Bayar">
+            <div>Belum Bayar</div>
+        </a>
+        <a href="riwayatdiproses.php">
+            <img src="asset/diproses.png" alt="Diproses">
+            <div>Diproses</div>
+        </a>
+        <a href="riwayatdikirim.php">
+            <img src="asset/dikirim.png" alt="Dikirim">
+            <div>Dikirim</div>
+        </a>
+        <a href="riwayatditerima.php">
+            <img src="asset/diterima.png" alt="Diterima">
+            <div>Diterima</div>
+        </a>
+        <a href="riwayatdibatalkan.php">
+            <img src="asset/orderdibatalkan.png" alt="Dibatalkan">
+            <div>Dibatalkan</div>
+        </a>
     </div>
-<div>
-    <h4>Form Checkout</h4>
-    <form action="proses_checkout.php" method="post">
-        <label for="nama">Nama Penerima</label>
-        <input type="text" class="form-control" id="nama" name="nama" required>
-        <label for="alamat">Alamat Lengkap :</label>
-        <textarea id="alamat" name="alamat" class="form" required></textarea>
-        <?php
-        mysqli_data_seek($result, 0);
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <input type="hidden" name="id_produk[]" value="<?php echo $row['id_produk']; ?>">
-            <input type="hidden" name="jumlah[]" value="<?php echo $row['jumlah']; ?>">
-        <?php } ?>
-        <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran; ?>">
-        <input type="submit" value="Proses Checkout" class="btn-checkout">
-    </form>
-</div>
+</main>
+
+
 
     
 </main>

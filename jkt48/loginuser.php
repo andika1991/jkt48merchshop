@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
@@ -439,34 +440,54 @@ main {
 </head>
 <body>
 <header>
-    <div class="logo">
-        <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
-    </div>
-    <nav>
-        <ul>
-            <li>
-                <a href="#" class="kategori-trigger">Kategori Barang</a>
-                <ul class="submenu">
-                    <li><a href="subkategori1.php">Pakaian</a></li>
-                    <li><a href="subkategori2.php">Musik</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                    <li><a href="subkategori1.php">Subkategori 1</a></li>
-                </ul>
-            </li>
-            <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
-            <li><a href="login.php"><i class="bi bi-person-circle"></i>LOGIN</a></li>
-            <li><a href="daftar.php"><i class="bi bi-person-plus"></i>DAFTAR</a></li>
-        </ul>
-    </nav>
-</header>
+        <div class="logo">
+            <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
+        </div>
+        <nav>
 
+    <ul>
+
+    <li>
+    <input type="text" id="search" placeholder="Cari produk...">
+                </li>
+                
+        <div id="search-results" class="search-results"></div>
+    
+
+        <li><a href="#" class="kategori-trigger">Kategori Barang</a>
+        <ul class="submenu">
+    <li><a href="Pakaian.php"><i class="fas fa-tshirt"></i> Pakaian</a></li>
+    <li><a href="Aksesoris.php"><i class="fas fa-ring"></i> Aksesoris</a></li>
+    <li><a href="koleksi.php"><i class="fas fa-gem"></i> Koleksi</a></li>
+    <li><a href="elektronik.php"><i class="fas fa-laptop"></i> Elektronik</a></li>
+    <li><a href="pernakpernik.php"><i class="fas fa-shopping-basket"></i> Pernak-Pernik</a></li>
+    <li><a href="rumahtangga.php"><i class="fas fa-home"></i> Rumah Tangga</a></li>
+    <li><a href="musik.php"><i class="fas fa-music"></i> Musik</a></li>
+    <li><a href="Perlengkapansekolah.php"><i class="fas fa-school"></i> Perlengkapan Sekolah</a></li>
+    <li><a href="lainnya.php"><i class="fas fa-ellipsis-h"></i> Lainnya</a></li>
+</ul>
+
+        </li>
+        <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
+        <?php
+    
+        if (isset($_SESSION['username'])) {
+          
+            $username = $_SESSION['username'];
+            echo "<li><a href='akun.php' class='login'><img src='img/Group.jpg' alt='User Icon'> $username</a></li>";
+           
+        } else {
+          
+            echo "<li><a href='loginuser.php' class='login'><i class='fas fa-sign-in-alt'></i>  Login</a></li>";
+            echo "<li><a href='daftar.php'><i class='fas fa-user-plus'></i>Daftar</a></li>";
+        }
+        ?>
+
+
+
+    </ul>
+
+</nav>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -477,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('active');
     });
 
-
+    // Menyembunyikan submenu saat kategori barang tidak diklik
     document.addEventListener('click', function(event) {
         if (!kategoriTrigger.contains(event.target)) {
             submenu.classList.remove('active');
@@ -572,4 +593,36 @@ document.addEventListener('DOMContentLoaded', function() {
     </footer>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val();
+            if (query.length > 0) {
+                $.ajax({
+                    url: 'search.php',
+                    method: 'GET',
+                    data: { q: query },
+                    success: function(data) {
+                        $('#search-results').html(data).show();
+                    }
+                });
+            } else {
+                $('#search-results').hide();
+            }
+        });
+
+        $(document).click(function(event) {
+            if (!$(event.target).closest('#search, #search-results').length) {
+                $('#search-results').hide();
+            }
+        });
+    });
+</script>
 </html>

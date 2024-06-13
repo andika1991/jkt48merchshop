@@ -234,6 +234,284 @@ h5 {
 .sosmed ul li:last-child {
     margin-right: 0; 
 }
+.section1 {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+.section1 video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 20%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size:30px;
+    border-radius: 5px;
+    text-decoration: none;
+    background: linear-gradient(90deg, #0085FF 0%, #0047AB 100%); 
+    color: white;
+    position: absolute;
+    overflow: hidden;
+    margin-top:80px;
+    margin-left: 500px; 
+}
+
+
+.button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+    transition: left 0.3s;
+}
+
+.button:hover::after {
+    left: 100%;
+}
+
+.button:hover {
+    background-position: right center;
+    color: #E50112; 
+    transition: background-position 0.3s;
+}
+
+.section2 {
+    margin-bottom:70px;
+}
+
+.section3 {
+    background-color:#FF4655;
+    padding:0px 20px;
+}
+
+
+.section4 {
+
+    display: flex;
+  
+}
+
+.section4 img {
+    
+  margin-left: 20px;
+}
+
+.kebanggaan{
+    position:absolute;
+    margin-top:-17px;
+}
+
+.section5{
+    background-color:#FF4655 
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Mengkompensasi margin dari setiap kartu */
+}
+
+.card {
+    flex: 0 0 calc(20% - 20px); /* Lebar 20% dari parent dengan pengurangan margin dan jarak antar kartu */
+    margin: 10px; /* Margin di antara kartu */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.normal-price {
+    text-decoration: line-through; 
+    color: #888; 
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.promo-price {
+    color: #ff5733; 
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0; 
+    position: absolute; 
+    margin-top: 0px;
+    left: 418px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+.detailproduk {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .detailproduk img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .detailproduk h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .detailproduk p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .detailproduk .category {
+            color: #666;
+        }
+
+        .detailproduk .normal-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-right: 10px;
+        }
+
+        .detailproduk .promo-price {
+            color: #FF5722;
+            font-weight: bold;
+        }
+
+        .detailproduk .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #FF5722;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .detailproduk .btn:hover {
+            background-color: #E64A19;
+        }
+
+   
+        .kembali {
+            padding:10px;
+    margin-top: 40px;
+    text-align: left;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    bottom:20px;
+    top:20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #FF4655;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}
+.ulasan-container {
+    margin: 20px;
+}
+
+.ulasan-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    gap: 10px;
+}
+
+.ulasan-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+}
+
+.ulasan-card p {
+    margin: 5px 0;
+}
 
 table {
             width: 100%;
@@ -317,30 +595,78 @@ table {
 .modal-content p {
   margin-bottom: 15px;
 }
+.lanjutkan_pembayaran {
+    display: inline-block; 
+    padding: 5px 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 3px; 
+}
+
+.Rectangle27 {
+    width: 200px;
+    height: auto; 
+    padding: 10px; 
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+
+.Rectangle27 img {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+}
+
+.ButtonContainer {
+    margin-top: 10px; 
+}
+
 
 form {
-            background-color: #fff;
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
         }
-
-        label {
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+            margin-bottom: 5px;
         }
-
-        input[type="textarea"] ,input[type="text"]  {
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="file"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 8px;
+            font-size: 16px;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
+            border-radius: 3px;
         }
-
+        .btn-submit {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -350,7 +676,6 @@ form {
         <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
     </a>
 </div>
-
         <nav>
 
     <ul>
@@ -420,90 +745,54 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
     <main>
     <?php
+        // Periksa apakah pengguna sudah login
+        if (isset($_SESSION['username'])) {
+            // Ambil username dari sesi
+            $username = $_SESSION['username'];
+            
+            // Query untuk mengambil data pengguna
+            $query = "SELECT * FROM pengguna WHERE username = '$username'";
+            $result = mysqli_query($conn, $query);
+
+            if ($result) {
+                if (mysqli_num_rows($result) > 0) {
+                    // Ambil data pengguna
+                    $user_data = mysqli_fetch_assoc($result);
+                    $user_id = $user_data['id_pengguna']; // Mengambil ID pengguna
+                    $user_email = $user_data['email'];
+                    $user_username = $user_data['username'];
+                    // Menampilkan form edit
+                    echo "<div class='form-container'>";
+                    echo "<form action='updateprofil.php' method='post' enctype='multipart/form-data'>";
+                    echo "<input type='hidden' name='id_pengguna' value='$user_id'>";
+                    echo "<label for='username'>Username:</label>";
+                    echo "<input type='text' name='username' value='$user_username' required>";
+                    echo "<label for='email'>Email:</label>";
+                    echo "<input type='email' name='email' value='$user_email' required>";
+                    echo "<label for='password'>Password:</label>";
+                    echo "<input type='password' name='password' placeholder='Kosongkan Jika Anda tidak Ingin merubah password'>";
+                    echo "<label for='foto_profil'>Foto Profil:</label>";
+                    echo "<input type='file' id='foto_profil' name='foto_profil'>";
+                    echo "<input type='submit' value='Update Profil'>";
+                    echo "</form>";
+                    echo "</div>";
+                    
+                } else {
+                    echo "User data not found.";
+                }
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
+        } else {
+     
+        }
+
+        
+        mysqli_close($conn);
+        ?>
+</main>
 
 
-$id_pengguna = $_SESSION['id_pengguna']; // Ambil ID pengguna dari sesi
-
-$query = "SELECT keranjang.*, produk.nama_produk, produk.harga_normal, produk.harga_promo, produk.promo, produk.foto_produk
-          FROM keranjang 
-          JOIN produk ON keranjang.id_produk = produk.id_produk 
-          WHERE keranjang.id_pengguna = $id_pengguna";
-$result = mysqli_query($conn, $query);
-
-function format_rupiah($angka) {
-    return "Rp " . number_format($angka, 0, ',', '.');
-}
-
-$id_produk_dibeli = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $id_produk_dibeli[] = $row['id_produk'];
-}
-$id_produk_dibeli_string = implode(',', $id_produk_dibeli);
-mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-
-$total_harga = 0;
-while ($row = mysqli_fetch_assoc($result)) {
-    $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
-    $total_harga += $harga_produk * $row['jumlah'];
-}
-
-$biaya_ongkir = 0;
-if ($total_harga < 100000) {
-    $biaya_ongkir = $total_harga * 0.04;
-} elseif ($total_harga <= 500000) {
-    $biaya_ongkir = $total_harga * 0.08;
-} elseif ($total_harga <= 1000000) {
-    $biaya_ongkir = $total_harga * 0.12;
-} else {
-    $biaya_ongkir = $total_harga * 0.17;
-}
-
-$total_pembayaran = $total_harga + $biaya_ongkir;
-?>
-
-
-    <h2>Checkout Produk</h2>
-    <table>
-        <tr>
-            <th>Gambar</th>
-            <th>Nama Produk</th>
-            <th>Jumlah</th>
-            <th>Harga</th>
-        </tr>
-        <?php
-        mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
-                <td><?php echo $row['nama_produk']; ?></td>
-                <td><?php echo $row['jumlah']; ?></td>
-                <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-    
-    <div class="total">
-        <p>Total Harga: <?php echo format_rupiah($total_harga); ?></p>
-        <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
-        <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
-    </div>
-<div>
-    <h4>Form Checkout</h4>
-    <form action="proses_checkout.php" method="post">
-        <label for="nama">Nama Penerima</label>
-        <input type="text" class="form-control" id="nama" name="nama" required>
-        <label for="alamat">Alamat Lengkap :</label>
-        <textarea id="alamat" name="alamat" class="form" required></textarea>
-        <?php
-        mysqli_data_seek($result, 0);
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <input type="hidden" name="id_produk[]" value="<?php echo $row['id_produk']; ?>">
-            <input type="hidden" name="jumlah[]" value="<?php echo $row['jumlah']; ?>">
-        <?php } ?>
-        <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran; ?>">
-        <input type="submit" value="Proses Checkout" class="btn-checkout">
-    </form>
-</div>
 
     
 </main>

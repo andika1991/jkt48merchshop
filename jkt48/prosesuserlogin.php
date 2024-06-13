@@ -25,9 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             echo "<script>alert('Invalid password.');</script>";
+            echo "<script>window.location.href = 'loginuser.php'; </script>";
         }
     } else {
         echo "<script>alert('User Tidak Ditemukan');</script>";
+        echo "<script>window.location.href = 'loginuser.php'; </script>";
     }
 
 

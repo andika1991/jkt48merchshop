@@ -423,11 +423,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 $id_pengguna = $_SESSION['id_pengguna']; // Ambil ID pengguna dari sesi
-
-$query = "SELECT keranjang.*, produk.nama_produk, produk.harga_normal, produk.harga_promo, produk.promo, produk.foto_produk
-          FROM keranjang 
-          JOIN produk ON keranjang.id_produk = produk.id_produk 
-          WHERE keranjang.id_pengguna = $id_pengguna";
+$id_produk = $_GET['id_produk'];
+$query = "SELECT* FROM produk WHERE id_produk= $id_produk";
 $result = mysqli_query($conn, $query);
 
 function format_rupiah($angka) {
@@ -444,7 +441,7 @@ mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutn
 $total_harga = 0;
 while ($row = mysqli_fetch_assoc($result)) {
     $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
-    $total_harga += $harga_produk * $row['jumlah'];
+    $total_harga += $harga_produk ;
 }
 
 $biaya_ongkir = 0;
@@ -467,7 +464,7 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
         <tr>
             <th>Gambar</th>
             <th>Nama Produk</th>
-            <th>Jumlah</th>
+           
             <th>Harga</th>
         </tr>
         <?php
@@ -476,7 +473,7 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
             <tr>
                 <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
                 <td><?php echo $row['nama_produk']; ?></td>
-                <td><?php echo $row['jumlah']; ?></td>
+      
                 <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
             </tr>
         <?php } ?>
@@ -498,7 +495,7 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
         mysqli_data_seek($result, 0);
         while ($row = mysqli_fetch_assoc($result)) { ?>
             <input type="hidden" name="id_produk[]" value="<?php echo $row['id_produk']; ?>">
-            <input type="hidden" name="jumlah[]" value="<?php echo $row['jumlah']; ?>">
+            
         <?php } ?>
         <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran; ?>">
         <input type="submit" value="Proses Checkout" class="btn-checkout">

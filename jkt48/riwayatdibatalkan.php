@@ -1,7 +1,11 @@
 <?php
 include 'session_user.php';
-?>
 
+$query = "SELECT * FROM Pesanan WHERE id_pengguna = $id_pengguna AND status_pesanan = 'Cenceled'";
+$result = mysqli_query($conn, $query);
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -235,112 +239,114 @@ h5 {
     margin-right: 0; 
 }
 
-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .total {
-            margin-top: 20px;
-            text-align: right;
-        }
-        .btn-checkout {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-checkout:hover {
-            background-color: #45a049;
-        }
 
 
-        /* CSS untuk modal konfirmasi */
-.modal {
-  display: none; /* Sembunyikan modal secara default */
-  position: fixed; /* Tetap di posisi */
-  z-index: 1; /* Atur z-index agar modal muncul di atas konten lain */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4); /* Warna latar belakang semi-transparan */
+
+main {
+    padding-bottom:70px;
 }
 
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Lebar konten modal */
-  max-width: 400px; /* Lebar maksimum konten modal */
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.profil {
+    padding:20px;
+    width: 450px;
+    height:350px;
+    margin: 20px; /* Add margin for some spacing around the profile card */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center; /* Ensure text is left-aligned */
+    position: relative; /* Make the position relative to control its exact placement */
 }
 
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.profil h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.profil .avatar {
+    width: 120px; /* Set the size of the avatar image */
+    height: 120px;
+    border-radius: 50%; /* Make the avatar image round */
+    display: block; /* Ensure the image is treated as a block element */
+    margin-bottom: 15px;
+    margin-left:130px;
+  
 }
 
-
-.modal-content button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.profil .info {
+    margin-bottom: 10px;
+    font-size: 23px;
 }
 
-.modal-content button:hover {
-  background-color: #ddd;
+.btn-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-
-.modal-content p {
-  margin-bottom: 15px;
+.btn-edit:hover {
+    background-color: #0056b3;
 }
 
-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
+.order-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 800px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+.order-item {
+    background-color: white;
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-        input[type="textarea"] ,input[type="text"]  {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
+.order-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
+.order-info, .order-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-info h5 {
+    margin: 0;
+    color: #333;
+}
+
+.order-info p, .order-status p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.order-status {
+    text-align: right;
+}
+
+.order-status p {
+    color: #333;
+}
+
+.order-status p:nth-child(2) {
+    color: #e74c3c;
+    font-weight: bold;
+}
+  
     </style>
 </head>
 <body>
@@ -350,7 +356,6 @@ form {
         <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
     </a>
 </div>
-
         <nav>
 
     <ul>
@@ -419,91 +424,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-    <?php
+  
+<h3 style="text-align:center;font-weight:bold; font-size:30px;padding:30px;">Pesanan Dibatalkan</h3>
+<a href="akun.php">Kembali</a>
+<div class="order-list">
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="order-item">';
+                        echo '<div class="order-info">';
+                        echo '<h5>Order ID: ' . $row['invoice_id'] . '</h5>';
+                        echo '<p>Tanggal Pesan: ' . $row['timeorder'] . '</p>';
+                        echo '<p>Total Harga: Rp ' . number_format($row['total_harga'], 0, ',', '.') . '</p>';
+                        echo '</div>';
+                        echo '<div class="order-status">';
+                        echo '<p>Status: ' . $row['status_pesanan'] . '</p>';
+                        echo '<p>Batas Pembayaran: ' . $row['expired'] . '</p>';
+                        echo '<a href="pembayaranriwayat.php?id_pengguna=' . $row['id_pengguna'] . 
+                        '&id_datacheckout=' . $row['id_datacheckout'] . 
+                        '&harga=' . $row['total_harga'] . 
+                        '&id_metodepembayaran=' . $row['id_metodepembayaran'] . 
+                        '&id_detail=' . $row['id_detail'] . '" class="bayar-sekarang">Bayar Sekarang</a>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p>Tidak ada pesanan yang dibatalkan.</p>';
+                }
+                ?>
+
+</main>
 
 
-$id_pengguna = $_SESSION['id_pengguna']; // Ambil ID pengguna dari sesi
-
-$query = "SELECT keranjang.*, produk.nama_produk, produk.harga_normal, produk.harga_promo, produk.promo, produk.foto_produk
-          FROM keranjang 
-          JOIN produk ON keranjang.id_produk = produk.id_produk 
-          WHERE keranjang.id_pengguna = $id_pengguna";
-$result = mysqli_query($conn, $query);
-
-function format_rupiah($angka) {
-    return "Rp " . number_format($angka, 0, ',', '.');
-}
-
-$id_produk_dibeli = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $id_produk_dibeli[] = $row['id_produk'];
-}
-$id_produk_dibeli_string = implode(',', $id_produk_dibeli);
-mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-
-$total_harga = 0;
-while ($row = mysqli_fetch_assoc($result)) {
-    $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
-    $total_harga += $harga_produk * $row['jumlah'];
-}
-
-$biaya_ongkir = 0;
-if ($total_harga < 100000) {
-    $biaya_ongkir = $total_harga * 0.04;
-} elseif ($total_harga <= 500000) {
-    $biaya_ongkir = $total_harga * 0.08;
-} elseif ($total_harga <= 1000000) {
-    $biaya_ongkir = $total_harga * 0.12;
-} else {
-    $biaya_ongkir = $total_harga * 0.17;
-}
-
-$total_pembayaran = $total_harga + $biaya_ongkir;
-?>
-
-
-    <h2>Checkout Produk</h2>
-    <table>
-        <tr>
-            <th>Gambar</th>
-            <th>Nama Produk</th>
-            <th>Jumlah</th>
-            <th>Harga</th>
-        </tr>
-        <?php
-        mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
-                <td><?php echo $row['nama_produk']; ?></td>
-                <td><?php echo $row['jumlah']; ?></td>
-                <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-    
-    <div class="total">
-        <p>Total Harga: <?php echo format_rupiah($total_harga); ?></p>
-        <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
-        <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
-    </div>
-<div>
-    <h4>Form Checkout</h4>
-    <form action="proses_checkout.php" method="post">
-        <label for="nama">Nama Penerima</label>
-        <input type="text" class="form-control" id="nama" name="nama" required>
-        <label for="alamat">Alamat Lengkap :</label>
-        <textarea id="alamat" name="alamat" class="form" required></textarea>
-        <?php
-        mysqli_data_seek($result, 0);
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <input type="hidden" name="id_produk[]" value="<?php echo $row['id_produk']; ?>">
-            <input type="hidden" name="jumlah[]" value="<?php echo $row['jumlah']; ?>">
-        <?php } ?>
-        <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran; ?>">
-        <input type="submit" value="Proses Checkout" class="btn-checkout">
-    </form>
-</div>
 
     
 </main>

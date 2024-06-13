@@ -1,5 +1,9 @@
 <?php
 include 'session.php';
+
+$query_check_expired = "UPDATE pesanan SET status_pesanan = 'Expired' WHERE status_pesanan = 'Menunggu Pembayaran' AND Expired <= NOW()";
+$result_expired = mysqli_query($conn, $query_check_expired);
+
 ?>
 
 
@@ -232,6 +236,7 @@ include 'session.php';
                     echo "<option value='Dikirim'" . ($row["status_pesanan"] == "Dikirim" ? " selected" : "") . ">Dikirim</option>";
                     echo "<option value='Diterima Pelanggan'" . ($row["status_pesanan"] == "Diterima Pelanggan" ? " selected" : "") . ">Diterima Pelanggan</option>";
                     echo "<option value='Cenceled'" . ($row["status_pesanan"] == "Cenceled" ? " selected" : "") . ">Cenceled</option>";
+                    echo "<option value='Expired'" . ($row["status_pesanan"] == "Expired" ? " selected" : "") . ">Expired</option>";
                     echo "</select>";
                     echo "</td>";
                             echo "<td>" . $row["total_harga"] . "</td>";

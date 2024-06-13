@@ -8,6 +8,7 @@ include 'session_user.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -454,11 +455,11 @@ h5 {
     <ul>
 
     <li>
-                    <input type="text" id="search" placeholder="Cari produk...">
+    <input type="text" id="search" placeholder="Cari produk...">
                 </li>
-                <main>
+               
         <div id="search-results" class="search-results"></div>
-    </main>
+    
 
         <li><a href="#" class="kategori-trigger">Kategori Barang</a>
         <ul class="submenu">
@@ -478,14 +479,14 @@ h5 {
         <?php
     
         if (isset($_SESSION['username'])) {
-            // Jika pengguna sudah login, tampilkan nama pengguna dan opsi logout
+          
             $username = $_SESSION['username'];
             echo "<li><a href='akun.php' class='login'><img src='img/Group.jpg' alt='User Icon'> $username</a></li>";
-            // Tambahkan opsi logout di sini jika diperlukan
+           
         } else {
-            // Jika pengguna belum login, tampilkan opsi login dan daftar
-            echo "<li><a href='loginuser.php' class='login'><i class='fas fa-lock'></i> Login</a></li>";
-            echo "<li><a href='daftar.php'>Daftar</a></li>";
+          
+            echo "<li><a href='loginuser.php' class='login'><i class='fas fa-sign-in-alt'></i>  Login</a></li>";
+            echo "<li><a href='daftar.php'><i class='fas fa-user-plus'></i>Daftar</a></li>";
         }
         ?>
 
