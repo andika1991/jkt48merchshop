@@ -8,7 +8,7 @@ include 'session_user.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -234,135 +234,191 @@ h5 {
 .sosmed ul li:last-child {
     margin-right: 0; 
 }
-
-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .total {
-            margin-top: 20px;
-            text-align: right;
-        }
-        .btn-checkout {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-checkout:hover {
-            background-color: #45a049;
-        }
-
-
-        /* CSS untuk modal konfirmasi */
-.modal {
-  display: none; /* Sembunyikan modal secara default */
-  position: fixed; /* Tetap di posisi */
-  z-index: 1; /* Atur z-index agar modal muncul di atas konten lain */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4); /* Warna latar belakang semi-transparan */
-}
-
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Lebar konten modal */
-  max-width: 400px; /* Lebar maksimum konten modal */
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-.modal-content button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.modal-content button:hover {
-  background-color: #ddd;
-}
-
-
-.modal-content p {
-  margin-bottom: 15px;
-}
-
-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="textarea"] ,input[type="text"]  {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-            rows: 6;
-        }
-
-        textarea, input[type="text"] {
+.section1 {
+    position: relative;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-    /* Tentukan jumlah baris yang lebih besar untuk textarea */
-    rows: 6; /* Atur sesuai kebutuhan Anda */
+    height: 100vh; 
+    overflow: hidden;
 }
 
+.section1 video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 20%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size:30px;
+    border-radius: 5px;
+    text-decoration: none;
+    background: linear-gradient(90deg, #0085FF 0%, #0047AB 100%); 
+    color: white;
+    position: absolute;
+    overflow: hidden;
+    margin-top:80px;
+    margin-left: 500px; 
+}
+
+
+.button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+    transition: left 0.3s;
+}
+
+.button:hover::after {
+    left: 100%;
+}
+
+.button:hover {
+    background-position: right center;
+    color: #E50112; 
+    transition: background-position 0.3s;
+}
+
+.section2 {
+    margin-bottom:70px;
+}
+
+.section3 {
+    background-color:#FF4655;
+    padding:0px 20px;
+}
+
+
+.section4 {
+
+    display: flex;
+  
+}
+
+.section4 img {
+    
+  margin-left: 20px;
+}
+
+.kebanggaan{
+    position:absolute;
+    margin-top:-17px;
+}
+
+.section5{
+    background-color:#FF4655 
+}
+
+.promo {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+            position: relative;
+        }
+        h4 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .card-container {
+    display: flex;
+    flex-wrap: wrap; /* Menyebabkan kartu untuk terbalik ke bawah jika ruang horizontal penuh */
+    gap: 20px; /* Memberi jarak antar kartu */
+    padding: 10px;
+    justify-content: center; /* Menyelaraskan kartu di tengah secara horizontal */
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    width: 250px; /* Tetapkan lebar tetap untuk setiap kartu */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 15px;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+}
+
+.card-text {
+    margin: 0 0 10px;
+}
+
+.normal-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.promo-price {
+    color: #e60000;
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+      
+
+        #search {
+    padding: 9px;
+    width:330px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+#search-results {
+    margin-top: 20px;
+}
     </style>
 </head>
 <body>
-<header>
-<div class="logo">
+    <header>
+    <div class="logo">
     <a href="home.php">
         <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
     </a>
 </div>
-
         <nav>
 
     <ul>
@@ -370,7 +426,7 @@ form {
     <li>
     <input type="text" id="search" placeholder="Cari produk...">
                 </li>
-                
+               
         <div id="search-results" class="search-results"></div>
     
 
@@ -418,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('active');
     });
 
-  
+    // Menyembunyikan submenu saat kategori barang tidak diklik
     document.addEventListener('click', function(event) {
         if (!kategoriTrigger.contains(event.target)) {
             submenu.classList.remove('active');
@@ -431,91 +487,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-    <?php
+        <!-- Carousel Banner -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Third slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
 
-
-$id_pengguna = $_SESSION['id_pengguna']; // Ambil ID pengguna dari sesi
-$id_produk = $_GET['id_produk'];
-$query = "SELECT* FROM produk WHERE id_produk= $id_produk";
-$result = mysqli_query($conn, $query);
-
-function format_rupiah($angka) {
-    return "Rp " . number_format($angka, 0, ',', '.');
-}
-
-$id_produk_dibeli = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $id_produk_dibeli[] = $row['id_produk'];
-}
-$id_produk_dibeli_string = implode(',', $id_produk_dibeli);
-mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-
-$total_harga = 0;
-while ($row = mysqli_fetch_assoc($result)) {
-    $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
-    $total_harga += $harga_produk ;
-}
-
-$biaya_ongkir = 0;
-if ($total_harga < 100000) {
-    $biaya_ongkir = $total_harga * 0.04;
-} elseif ($total_harga <= 500000) {
-    $biaya_ongkir = $total_harga * 0.08;
-} elseif ($total_harga <= 1000000) {
-    $biaya_ongkir = $total_harga * 0.12;
-} else {
-    $biaya_ongkir = $total_harga * 0.17;
-}
-
-$total_pembayaran = $total_harga + $biaya_ongkir;
-?>
-
-
-    <h2 style="padding-top:40px; text-align:center;font-weight:bold;">Checkout Produk</h2>
-    <table>
-        <tr>
-            <th>Gambar</th>
-            <th>Nama Produk</th>
-           
-            <th>Harga</th>
-        </tr>
-        <?php
-        mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
-                <td><?php echo $row['nama_produk']; ?></td>
       
-                <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-    
-    <div class="total">
-        <p>Total Harga: <?php echo format_rupiah($total_harga); ?></p>
-        <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
-        <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
-    </div>
-<div>
-    <h4>Form Checkout</h4>
-    <form action="proses_checkout.php" method="post">
-        <label for="nama">Nama Penerima</label>
-        <input type="text" class="form-control" id="nama" name="nama" required>
-        <label for="alamat">Alamat Lengkap :</label>
-        <textarea id="alamat" name="alamat" class="form" required></textarea>
+
         <?php
-        mysqli_data_seek($result, 0);
-        while ($row = mysqli_fetch_assoc($result)) { ?>
-            <input type="hidden" name="id_produk[]" value="<?php echo $row['id_produk']; ?>">
-            
+        include 'koneksi.php';
+
+        $query = "SELECT * FROM produk WHERE promo = 'Aktif'";
+        $result = mysqli_query($conn, $query);
+
+        function format_rupiah($angka){
+            return "Rp " . number_format($angka,0,',','.');
+        }
+        ?>
+
+    
+
+<div class="promo">
+    <h4 style="font-weight:bold;text-align:left;">Lainnya</h4>
+
+    <?php
+    $query = "SELECT * FROM produk WHERE kategori_produk = 'Lainnya'";
+    $result = mysqli_query($conn, $query);
+    ?>
+
+    <div class="card-container" id="card-container-pakaian">
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <div class="card">
+                <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                    <?php if ($row['promo'] == 'Aktif') { ?>
+                        <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                    <?php } else { ?>
+                        <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                    <?php } ?>
+                    <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                </div>
+            </div>
         <?php } ?>
-        <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran; ?>">
-        <input type="submit" value="Proses Checkout" class="btn-checkout">
-    </form>
+    </div>
+  
 </div>
 
-    
-</main>
+
+
+    </main>
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">
@@ -579,6 +619,8 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
 
     </footer>
 </body>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -611,4 +653,6 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
         });
     });
 </script>
+
+
 </html>

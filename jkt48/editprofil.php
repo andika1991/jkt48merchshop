@@ -626,46 +626,51 @@ table {
 }
 
 
-form {
-            width: 300px;
-            margin: 0 auto;
-            border: 1px solid #ccc;
+
+        
+
+        .form-container {
+            margin-bottom:40px;
+            margin-top:40px;
+            background-color: #fff;
             padding: 20px;
-            border-radius: 5px;
+            margin-left:40%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
         }
-        h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
+        .form-container form {
+            display: flex;
+            flex-direction: column;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
+        .form-container label {
             margin-bottom: 5px;
+            font-weight: bold;
         }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            font-size: 16px;
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="password"],
+        .form-container input[type="file"] {
+            padding: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 4px;
         }
-        .btn-submit {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
             border: none;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 16px;
         }
-        .btn-submit:hover {
-            background-color: #0056b3;
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
