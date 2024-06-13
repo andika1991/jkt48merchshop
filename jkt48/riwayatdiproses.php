@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         '&id_datacheckout=' . $row['id_datacheckout'] . 
                         '&harga=' . $row['total_harga'] . 
                         '&id_metodepembayaran=' . $row['id_metodepembayaran'] . 
-                        '&id_detail=' . $row['id_detail'] . '" class="bayar-sekarang">Detail Pesanan</a>';
+                        '&id_pesanan=' . $row['id_pesanan'] . '" class="bayar-sekarang">Detail Pesanan</a>';
                         echo '</div>';
                         echo '</div>';
                     }

@@ -486,15 +486,155 @@ h5 {
 .btn-back:hover {
     background-color: #0056b3;
 }
+.ulasan-container {
+    margin: 20px;
+}
 
+.ulasan-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    gap: 10px;
+}
+
+.ulasan-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+}
+
+.ulasan-card p {
+    margin: 5px 0;
+}
+
+table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .btn-checkout {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-checkout:hover {
+            background-color: #45a049;
+        }
+
+
+        /* CSS untuk modal konfirmasi */
+.modal {
+  display: none; /* Sembunyikan modal secara default */
+  position: fixed; /* Tetap di posisi */
+  z-index: 1; /* Atur z-index agar modal muncul di atas konten lain */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4); /* Warna latar belakang semi-transparan */
+}
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Lebar konten modal */
+  max-width: 400px; /* Lebar maksimum konten modal */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #ddd;
+}
+
+
+.modal-content p {
+  margin-bottom: 15px;
+}
+.lanjutkan_pembayaran {
+    display: inline-block; 
+    padding: 5px 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    text-decoration: none; 
+    border: none; 
+    border-radius: 3px; 
+}
+
+.Rectangle27 {
+    width: 200px;
+    height: auto; 
+    padding: 10px; 
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+
+.Rectangle27 img {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+}
+
+.ButtonContainer {
+    margin-top: 10px; 
+}
 
     </style>
 </head>
 <body>
 <header>
-        <div class="logo">
-            <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
-        </div>
+<div class="logo">
+    <a href="home.php">
+        <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
+    </a>
+</div>
+
         <nav>
 
     <ul>
@@ -564,43 +704,93 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
     <main>
     <?php
-include 'koneksi.php'; 
+$id_pengguna = $_SESSION['id_pengguna']; 
+$id_datacheckout = $_GET['id_datacheckout'];
+$id_pesanan=$_GET['id_pesanan'];
+$query = "SELECT detail_checkout.*, datacheckout.*, produk.*
+          FROM detail_checkout
+          JOIN datacheckout ON detail_checkout.id_datacheckout = datacheckout.id_datacheckout
+          JOIN produk ON detail_checkout.id_produk = produk.id_produk
+          WHERE detail_checkout.id_datacheckout = $id_datacheckout";
 
-
-$id_produk = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-
-$query = "SELECT * FROM produk WHERE id_produk = $id_produk";
 $result = mysqli_query($conn, $query);
 
+$querypesanann ="SELECT * FROM `pesanan` WHERE id_pesanan='$id_pesanan' LIMIT 1";
+$resultpesanan = mysqli_query($conn, $querypesanann);
+$rowpesanan = mysqli_fetch_assoc($resultpesanan);
+$invoice_id = $rowpesanan['invoice_id'];
+$id_pesanan = $rowpesanan['id_pesanan'];
+$status = $rowpesanan['status_pesanan'];
+function format_rupiah($angka) {
+    return "Rp " . number_format($angka, 0, ',', '.');
+}
 
-if ($row = mysqli_fetch_assoc($result)) {
-    $kategori_produk=$row['kategori_produk'];
-    function format_rupiah($angka){
-        $rupiah = "Rp " . number_format($angka,0,',','.');
-        return $rupiah;
-    }
-    ?>
-<div class="kembali">
-    <a href="home.php" class="btn-back">Kembali</a>
+$row = mysqli_fetch_assoc($result); // Ambil satu baris pertama dari hasil query
+$namapenerima = $row['nama_penerima'];
+$alamatpenerima = $row['alamat_detail'];
+$total_harga = 0;
+do {
+    $harga_produk = $row['promo'] == 'Aktif' ? $row['harga_promo'] : $row['harga_normal'];
+    $total_harga += $harga_produk * $row['jumlah'];
+} while ($row = mysqli_fetch_assoc($result)); // Hitung total harga dari semua produk
+
+$biaya_ongkir = 0;
+if ($total_harga < 100000) {
+    $biaya_ongkir = $total_harga * 0.04;
+} elseif ($total_harga <= 500000) {
+    $biaya_ongkir = $total_harga * 0.08;
+} elseif ($total_harga <= 1000000) {
+    $biaya_ongkir = $total_harga * 0.12;
+} else {
+    $biaya_ongkir = $total_harga * 0.17;
+}
+
+$total_pembayaran = $total_harga + $biaya_ongkir;
+?>
+
+<h2>Detail Pembelian Produk</h2>
+<table>
+    <tr>
+        <th>Gambar</th>
+        <th>Nama Produk</th>
+        <th>Jumlah</th>
+        <th>Harga</th>
+    </tr>
+    <?php
+    mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
+    while ($row = mysqli_fetch_assoc($result)) { ?>
+        <tr>
+            <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
+            <td><?php echo $row['nama_produk']; ?></td>
+            <td><?php echo $row['jumlah']; ?></td>
+            <td><?php echo $row['promo'] == 'Aktif' ? format_rupiah($row['harga_promo']) : format_rupiah($row['harga_normal']); ?></td>
+        </tr>
+    <?php } ?>
+</table>
+
+<div class="total">
+    <p>Total Harga: <?php echo format_rupiah($total_harga); ?></p>
+    <p>Biaya Ongkir: <?php echo format_rupiah($biaya_ongkir); ?></p>
+    <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
 </div>
 
-<div class="detailproduk">
-
-<div class="detailproduk">
-    <img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>">
-    <h2><?php echo $row['nama_produk']; ?></h2>
-    <p><?php echo $row['deskripsi_produk']; ?></p>
-    <p class="category">Kategori: <?php echo $row['kategori_produk']; ?></p>
-    <?php if($row['promo'] == 'Aktif') : ?>
-        <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <?php endif; ?>
-    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <a href="belisekarang.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn">Beli Sekarang</a>
-    <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; }?>" class="btn">Tambahkan Ke Keranjang</a>
+<div>
+    <h2>Detail Pengiriman</h2>
+    <p>Nama Penerima: <?php echo $namapenerima ?></p>
+    <p>Alamat Penerima: <?php echo $alamatpenerima ?></p>
 </div>
+
+
+<p>Status Pesanan: <?php echo $status ?></p>
+<p>Invoice Id: <?php echo $invoice_id ?></p>
+
+<a href="prosesupdatediterima.php?id_pesanan=<?php echo $id_pesanan; ?>" onclick="return confirm('Apakah Anda ingin konfirmasi pesanan ini bahwa telah diterima?')">Terima Pesanan</a>
+
+
+ 
+
+    
 </main>
-
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">
@@ -696,55 +886,4 @@ if ($row = mysqli_fetch_assoc($result)) {
         });
     });
 </script>
-
-<script>
-        function scrollCards(direction, category) {
-            const container = document.getElementById(`card-container-${category}`);
-            const scrollAmount = 300;
-            if (direction === 'prev') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else if (direction === 'next') {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-            updateButtons(category);
-        }
-
-        function updateButtons(category) {
-            const container = document.getElementById(`card-container-${category}`);
-            const btnPrev = document.getElementById(`btn-prev-${category}`);
-            const btnNext = document.getElementById(`btn-next-${category}`);
-            const maxScrollLeft = container.scrollWidth - container.clientWidth;
-
-            btnPrev.disabled = container.scrollLeft === 0;
-            btnNext.disabled = container.scrollLeft >= maxScrollLeft;
-        }
-
-        document.getElementById('card-container-promo').addEventListener('scroll', () => updateButtons('promo'));
-        document.getElementById('card-container-pakaian').addEventListener('scroll', () => updateButtons('pakaian'));
-        document.getElementById('card-container-aksesoris').addEventListener('scroll', () => updateButtons('aksesoris'));
-        document.getElementById('card-container-Koleksi').addEventListener('scroll', () => updateButtons('Koleksi'));
-        document.getElementById('card-container-Elektronik').addEventListener('scroll', () => updateButtons('Elektronik'));
-        document.getElementById('card-container-Pernak-Pernik').addEventListener('scroll', () => updateButtons('Pernak-Pernik'));
-        document.getElementById('card-container-Rumahtangga').addEventListener('scroll', () => updateButtons('Rumahtangga'));
-        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Musik'));
-        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Perlengkapansekolah'));
-        window.addEventListener('load', () => {
-            updateButtons('promo');
-            updateButtons('pakaian');
-            updateButtons('aksesoris');
-            updateButtons('Koleksi');
-            updateButtons('Elektronik');
-            updateButtons('Pernak-Pernik'); 
-            updateButtons('Rumahtangga');
-            updateButtons('Musik');
-            updateButtons('Perlengkapansekolah');
-        });
-    </script>
-
 </html>

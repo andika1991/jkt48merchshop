@@ -443,11 +443,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         echo '</div>';
                         echo '<div class="order-status">';
                         echo '<p>Status: ' . $row['status_pesanan'] . '</p>';
-                        echo '<a href="detailorderpesanan.php?id_pengguna=' . $row['id_pengguna'] . 
+                        echo '<a href="detailorderpesananditerima.php?id_pengguna=' . $row['id_pengguna'] . 
                         '&id_datacheckout=' . $row['id_datacheckout'] . 
                         '&harga=' . $row['total_harga'] . 
                         '&id_metodepembayaran=' . $row['id_metodepembayaran'] . 
-                        '&id_detail=' . $row['id_detail'] . '" class="bayar-sekarang">Detail Pesanan</a>';
+                        '&id_pesanan=' . $row['id_pesanan'] . '" class="bayar-sekarang">Detail Pesanan</a>';
                         echo '</div>';
                         echo '</div>';
                     }

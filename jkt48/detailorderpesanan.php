@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <?php
 $id_pengguna = $_SESSION['id_pengguna']; 
 $id_datacheckout = $_GET['id_datacheckout'];
-$id_detail = $_GET['id_detail'];
+$id_pesanan=$_GET['id_pesanan'];
 $query = "SELECT detail_checkout.*, datacheckout.*, produk.*
           FROM detail_checkout
           JOIN datacheckout ON detail_checkout.id_datacheckout = datacheckout.id_datacheckout
@@ -715,10 +715,11 @@ $query = "SELECT detail_checkout.*, datacheckout.*, produk.*
 
 $result = mysqli_query($conn, $query);
 
-$querypesanann ="SELECT * FROM `pesanan` WHERE id_datacheckout='$id_datacheckout' LIMIT 1";
+$querypesanann ="SELECT * FROM `pesanan` WHERE id_pesanan='$id_pesanan' LIMIT 1";
 $resultpesanan = mysqli_query($conn, $querypesanann);
 $rowpesanan = mysqli_fetch_assoc($resultpesanan);
 $invoice_id = $rowpesanan['invoice_id'];
+$id_pesanan = $rowpesanan['id_pesanan'];
 $status = $rowpesanan['status_pesanan'];
 function format_rupiah($angka) {
     return "Rp " . number_format($angka, 0, ',', '.');
@@ -783,7 +784,8 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
 <p>Status Pesanan: <?php echo $status ?></p>
 <p>Invoice Id: <?php echo $invoice_id ?></p>
 
-<a href="batalkanpesanan.php">Batalkan Pesanan</a>
+<a href="prosesbatalkanpesanan.php?invoice_id=<?php echo $id_pesanan; ?>" onclick="return confirm('Apakah Anda ingin membatalkan pesanan ini?')">Batalkan Pesanan</a>
+
 
  
 

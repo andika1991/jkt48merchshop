@@ -1,7 +1,7 @@
 <?php
 include 'session_user.php';
 
-$query = "SELECT * FROM Pesanan WHERE id_pengguna = $id_pengguna AND status_pesanan = 'Cenceled'";
+$query = "SELECT * FROM Pesanan WHERE id_pengguna = $id_pengguna AND status_pesanan = 'Cencelled'";
 $result = mysqli_query($conn, $query);
 
 
@@ -440,11 +440,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         echo '<div class="order-status">';
                         echo '<p>Status: ' . $row['status_pesanan'] . '</p>';
                         echo '<p>Batas Pembayaran: ' . $row['expired'] . '</p>';
-                        echo '<a href="pembayaranriwayat.php?id_pengguna=' . $row['id_pengguna'] . 
+                        echo '<a href="detailorderpesananditerima.php?id_pengguna=' . $row['id_pengguna'] . 
                         '&id_datacheckout=' . $row['id_datacheckout'] . 
                         '&harga=' . $row['total_harga'] . 
                         '&id_metodepembayaran=' . $row['id_metodepembayaran'] . 
-                        '&id_detail=' . $row['id_detail'] . '" class="bayar-sekarang">Bayar Sekarang</a>';
+                        '&id_pesanan=' . $row['id_pesanan'] . '" class="bayar-sekarang">Lihat Pesanan</a>';
                         echo '</div>';
                         echo '</div>';
                     }

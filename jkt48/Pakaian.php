@@ -8,7 +8,7 @@ include 'session_user.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -317,181 +317,103 @@ h5 {
     background-color:#FF4655 
 }
 
-.card-container {
+.promo {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+            position: relative;
+        }
+        h4 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .card-container {
     display: flex;
-    flex-wrap: wrap;
-    margin: -10px; /* Mengkompensasi margin dari setiap kartu */
+    flex-wrap: wrap; /* Menyebabkan kartu untuk terbalik ke bawah jika ruang horizontal penuh */
+    gap: 20px; /* Memberi jarak antar kartu */
+    padding: 10px;
+    justify-content: center; /* Menyelaraskan kartu di tengah secara horizontal */
 }
 
 .card {
-    flex: 0 0 calc(20% - 20px); /* Lebar 20% dari parent dengan pengurangan margin dan jarak antar kartu */
-    margin: 10px; /* Margin di antara kartu */
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.2s;
+    width: 250px; /* Tetapkan lebar tetap untuk setiap kartu */
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
-.card-img-top {
+.card img {
     width: 100%;
-    height: 200px;
+    height: 230px;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .card-body {
-    padding: 20px;
+    padding: 15px;
+    text-align: left;
 }
 
 .card-title {
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 1.2em;
+    margin: 0 0 10px;
 }
 
 .card-text {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
 }
 
-
-.card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.normal-price {
+    text-decoration: line-through;
+    color: #888;
 }
 
+.promo-price {
+    color: #e60000;
+    font-weight: bold;
+}
 
 .btn {
     display: inline-block;
-    background-color: #007bff;
+    padding: 10px 15px;
     color: #fff;
-    padding: 8px 16px;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    cursor: pointer;
+    text-align: center;
 }
 
 .btn:hover {
     background-color: #0056b3;
 }
 
-.normal-price {
-    text-decoration: line-through; 
-    color: #888; 
-    display: inline-block;
-    margin-right: 10px;
-}
 
-.promo-price {
-    color: #ff5733; 
-    display: inline-block;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0; 
-    position: absolute; 
-    margin-top: 0px;
-    left: 418px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 5px 10px;
+      
+
+        #search {
+    padding: 9px;
+    width:330px;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    outline: none;
 }
 
-
-.detailproduk {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .detailproduk img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .detailproduk h2 {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .detailproduk p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .detailproduk .category {
-            color: #666;
-        }
-
-        .detailproduk .normal-price {
-            text-decoration: line-through;
-            color: #888;
-            margin-right: 10px;
-        }
-
-        .detailproduk .promo-price {
-            color: #FF5722;
-            font-weight: bold;
-        }
-
-        .detailproduk .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: #fff;
-            background-color: #FF5722;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 20px;
-        }
-
-        .detailproduk .btn:hover {
-            background-color: #E64A19;
-        }
-
-   
-        .kembali {
-            padding:10px;
-    margin-top: 40px;
-    text-align: left;
+#search-results {
+    margin-top: 20px;
 }
-
-.btn-back {
-    display: inline-block;
-    padding: 10px 20px;
-    bottom:20px;
-    top:20px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #FF4655;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.btn-back:hover {
-    background-color: #0056b3;
-}
-
-
     </style>
 </head>
 <body>
-<header>
+    <header>
         <div class="logo">
             <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
         </div>
@@ -502,7 +424,7 @@ h5 {
     <li>
     <input type="text" id="search" placeholder="Cari produk...">
                 </li>
-                
+               
         <div id="search-results" class="search-results"></div>
     
 
@@ -550,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('active');
     });
 
-  
+    // Menyembunyikan submenu saat kategori barang tidak diklik
     document.addEventListener('click', function(event) {
         if (!kategoriTrigger.contains(event.target)) {
             submenu.classList.remove('active');
@@ -563,44 +485,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
+        <!-- Carousel Banner -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Third slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+      
+
+        <?php
+        include 'koneksi.php';
+
+        $query = "SELECT * FROM produk WHERE promo = 'Aktif'";
+        $result = mysqli_query($conn, $query);
+
+        function format_rupiah($angka){
+            return "Rp " . number_format($angka,0,',','.');
+        }
+        ?>
+
+    
+
+<div class="promo">
+    <h4 style="font-weight:bold;text-align:left;">Pakaian</h4>
+
     <?php
-include 'koneksi.php'; 
-
-
-$id_produk = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-
-$query = "SELECT * FROM produk WHERE id_produk = $id_produk";
-$result = mysqli_query($conn, $query);
-
-
-if ($row = mysqli_fetch_assoc($result)) {
-    $kategori_produk=$row['kategori_produk'];
-    function format_rupiah($angka){
-        $rupiah = "Rp " . number_format($angka,0,',','.');
-        return $rupiah;
-    }
+    $query = "SELECT * FROM produk WHERE kategori_produk = 'Pakaian'";
+    $result = mysqli_query($conn, $query);
     ?>
-<div class="kembali">
-    <a href="home.php" class="btn-back">Kembali</a>
+
+    <div class="card-container" id="card-container-pakaian">
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <div class="card">
+                <img src="<?php echo $row['foto_produk']; ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title"><?php echo $row['nama_produk']; ?></h4>
+                    <?php if ($row['promo'] == 'Aktif') { ?>
+                        <p class="card-text">Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                        <p class="card-text">Cuma <span class="promo-price"><?php echo format_rupiah($row['harga_promo']); ?></span></p>
+                    <?php } else { ?>
+                        <p class="card-text">Harga <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
+                    <?php } ?>
+                    <a href="detailproduk.php?id=<?php echo $row['id_produk']; ?>" class="btn btn-primary">Beli Sekarang</a>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+  
 </div>
 
-<div class="detailproduk">
 
-<div class="detailproduk">
-    <img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>">
-    <h2><?php echo $row['nama_produk']; ?></h2>
-    <p><?php echo $row['deskripsi_produk']; ?></p>
-    <p class="category">Kategori: <?php echo $row['kategori_produk']; ?></p>
-    <?php if($row['promo'] == 'Aktif') : ?>
-        <p>Harga Normal: <span class="normal-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <?php endif; ?>
-    <p>Harga Promo: <span class="promo-price"><?php echo format_rupiah($row['harga_normal']); ?></span></p>
-    <a href="belisekarang.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn">Beli Sekarang</a>
-    <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; }?>" class="btn">Tambahkan Ke Keranjang</a>
-</div>
-</main>
 
+    </main>
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">
@@ -664,6 +617,8 @@ if ($row = mysqli_fetch_assoc($result)) {
 
     </footer>
 </body>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -697,54 +652,5 @@ if ($row = mysqli_fetch_assoc($result)) {
     });
 </script>
 
-<script>
-        function scrollCards(direction, category) {
-            const container = document.getElementById(`card-container-${category}`);
-            const scrollAmount = 300;
-            if (direction === 'prev') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else if (direction === 'next') {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-            updateButtons(category);
-        }
-
-        function updateButtons(category) {
-            const container = document.getElementById(`card-container-${category}`);
-            const btnPrev = document.getElementById(`btn-prev-${category}`);
-            const btnNext = document.getElementById(`btn-next-${category}`);
-            const maxScrollLeft = container.scrollWidth - container.clientWidth;
-
-            btnPrev.disabled = container.scrollLeft === 0;
-            btnNext.disabled = container.scrollLeft >= maxScrollLeft;
-        }
-
-        document.getElementById('card-container-promo').addEventListener('scroll', () => updateButtons('promo'));
-        document.getElementById('card-container-pakaian').addEventListener('scroll', () => updateButtons('pakaian'));
-        document.getElementById('card-container-aksesoris').addEventListener('scroll', () => updateButtons('aksesoris'));
-        document.getElementById('card-container-Koleksi').addEventListener('scroll', () => updateButtons('Koleksi'));
-        document.getElementById('card-container-Elektronik').addEventListener('scroll', () => updateButtons('Elektronik'));
-        document.getElementById('card-container-Pernak-Pernik').addEventListener('scroll', () => updateButtons('Pernak-Pernik'));
-        document.getElementById('card-container-Rumahtangga').addEventListener('scroll', () => updateButtons('Rumahtangga'));
-        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Musik'));
-        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Perlengkapansekolah'));
-        window.addEventListener('load', () => {
-            updateButtons('promo');
-            updateButtons('pakaian');
-            updateButtons('aksesoris');
-            updateButtons('Koleksi');
-            updateButtons('Elektronik');
-            updateButtons('Pernak-Pernik'); 
-            updateButtons('Rumahtangga');
-            updateButtons('Musik');
-            updateButtons('Perlengkapansekolah');
-        });
-    </script>
 
 </html>
