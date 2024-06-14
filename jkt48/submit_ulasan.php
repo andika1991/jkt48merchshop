@@ -2,7 +2,7 @@
 session_start();
 include 'koneksi.php';
 
-// Pastikan id_pengguna ada di session
+
 if (!isset($_SESSION['id_pengguna'])) {
     echo "User not logged in.";
     exit();
@@ -32,10 +32,13 @@ foreach ($_POST['id_produk'] as $id_produk) {
     }
 }
 
-// Redirect to a success page or display a success message
-header('Location: ulasan_sukses.php');
+echo "<script>
+        alert('Ulasan Berhasil Dikirim.');
+        window.location.href = 'akun.php';
+      </script>";
+?>
 exit();
 
-// Menutup koneksi
+
 mysqli_close($conn);
 ?>

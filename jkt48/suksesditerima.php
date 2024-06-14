@@ -109,33 +109,32 @@ nav a:hover {
     position: absolute;
     top: 30px; /* Mengatur posisi submenu relatif terhadap submenu kategori */
   
-    margin-top: -10px; /* Menghindari celah antara submenu */
+    margin-top: -10px;
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Mengatur z-index agar submenu muncul di atas konten lain */
+    z-index: 1000; 
 }
 
-/* Menampilkan submenu saat kategori barang diklik */
 .submenu.active {
     display: block;
 }
 
-/* Gaya untuk setiap item dalam submenu */
+
 .submenu li {
     position: relative;
-    margin: 0; /* Hapus margin bawaan */
+    margin: 0; 
 }
 
 .submenu li a {
     background-color: #FFFFFF;
     color: #111111;
     text-decoration: none;
-    padding: 8px 16px; /* Menyesuaikan padding agar submenu lebih ramping */
+    padding: 8px 16px; 
     border-radius: 5px;
     transition: background-color 0.3s;
-    display: block; /* Membuat setiap item dalam submenu menjadi blok */
+    display: block; 
 }
 
 .submenu li a:hover {
@@ -269,10 +268,10 @@ main {
 }
 
 .profil .avatar {
-    width: 120px; /* Set the size of the avatar image */
+    width: 120px;
     height: 120px;
-    border-radius: 50%; /* Make the avatar image round */
-    display: block; /* Ensure the image is treated as a block element */
+    border-radius: 50%; 
+    display: block; 
     margin-bottom: 15px;
     margin-left:130px;
   
@@ -319,6 +318,86 @@ main {
             opacity: 0.8;
         }
 
+
+       
+h4 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.review-form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    resize: vertical;
+}
+
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:active {
+    background-color: #1e7e34;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
 
         main {
             padding-top:40px;
@@ -463,7 +542,7 @@ if ($id_data_checkout > 0) {
     echo "Invalid checkout ID.";
 }
 
-// Menutup koneksi
+
 mysqli_close($conn);
 ?>
 

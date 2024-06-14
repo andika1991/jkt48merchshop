@@ -17,8 +17,10 @@ if ($invoice_id > 0) {
         
         if ($result) {
        
-            header('Location: suksesdibatalkan.php');
-            exit();
+            echo "<script>
+            alert('Pesanan Berhasil dibatalkan.');
+            window.location.href = 'akun.php';
+          </script>";
         } else {
          
             echo "Error: " . mysqli_error($conn);

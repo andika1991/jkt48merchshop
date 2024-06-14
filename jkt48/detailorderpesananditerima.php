@@ -625,6 +625,8 @@ table {
     margin-top: 10px; 
 }
 
+
+
     </style>
 </head>
 <body>
@@ -748,7 +750,7 @@ if ($total_harga < 100000) {
 $total_pembayaran = $total_harga + $biaya_ongkir;
 ?>
 
-<h2>Detail Pembelian Produk</h2>
+<h2 style="font-weight:bold;text-align:center;">Detail Pembelian Produk</h2>
 <table>
     <tr>
         <th>Gambar</th>
@@ -757,7 +759,7 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
         <th>Harga</th>
     </tr>
     <?php
-    mysqli_data_seek($result, 0); // Kembali ke awal hasil query untuk loop berikutnya
+    mysqli_data_seek($result, 0); 
     while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <td><img src="<?php echo $row['foto_produk']; ?>" alt="<?php echo $row['nama_produk']; ?>" style="width: 90px; border: 1px solid black; border-radius: 4px;"></td>
