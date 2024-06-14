@@ -625,6 +625,46 @@ table {
     margin-top: 10px; 
 }
 
+.btnterima {
+    background-color:red;
+}
+
+.btnterima a {
+    text-decoration:none;
+    font-color:white;
+
+}
+
+
+.btnterima {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff5733;
+    border: none;
+    border-radius: 5px;
+    position:abosolute;
+    margin-left:620px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+ 
+}
+
+.btnterima:hover {
+    background-color: #ff5733;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btnterima:active {
+    background-color: #ff5733;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    padding-bottom:20px;
+}
     </style>
 </head>
 <body>
@@ -748,7 +788,7 @@ if ($total_harga < 100000) {
 $total_pembayaran = $total_harga + $biaya_ongkir;
 ?>
 
-<h2>Detail Pembelian Produk</h2>
+<h2 style>Detail Pembelian Produk</h2>
 <table>
     <tr>
         <th>Gambar</th>
@@ -784,8 +824,8 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
 <p>Status Pesanan: <?php echo $status ?></p>
 <p>Invoice Id: <?php echo $invoice_id ?></p>
 
-<a href="prosesupdatediterima.php?id_pesanan=<?php echo $id_pesanan; ?>" onclick="return confirm('Apakah Anda ingin konfirmasi pesanan ini bahwa telah diterima?')">Terima Pesanan</a>
-
+<a class="btnterima" href="prosesupdatediterima.php?id_pesanan=<?php echo $id_pesanan; ?>" onclick="return confirm('Apakah Anda ingin konfirmasi pesanan ini bahwa telah diterima?')">Terima Pesanan</a>
+<p style="text-align:center; font-weight:bold;">Catatan:Klik pesanan diterima apabila barang sudah sampai</p>
 
  
 
