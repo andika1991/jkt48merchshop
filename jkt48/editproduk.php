@@ -178,14 +178,14 @@ include 'koneksi.php';
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Fetch data based on ID
+    
     $query = "SELECT * FROM produk WHERE id_produk = $id";
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
 
-        // Assign fetched data to variables
+      
         $id_produk = $row['id_produk'];
         $nama_produk = $row['nama_produk'];
         $foto_produk = $row['foto_produk'];
@@ -194,9 +194,9 @@ if(isset($_GET['id'])) {
         $harga_normal = $row['harga_normal'];
         $harga_promo = $row['harga_promo'];
         $deskripsi_produk = $row['deskripsi_produk'];
-       
+        $status_produk = $row['status_produk'];
     } else {
-        // Handle if no data found
+    
         echo "Data tidak ditemukan.";
         exit();
     }
@@ -250,11 +250,20 @@ if(isset($_GET['id'])) {
     </div>
     <div class="form-group">
         <label for="harga_normal">Harga Normal:</label>
-        <input type="text" class="form-control" id="harga_normal" name="harga_normal"  value="<?php echo $harga_normal; ?>">
+        <input type="number" class="form-control" id="harga_normal" name="harga_normal"  value="<?php echo $harga_normal; ?>">
     </div>
     <div class="form-group">
         <label for="harga_promo">Harga Promo:</label>
-        <input type="text" class="form-control" id="harga_promo" name="harga_promo"  value="<?php echo $harga_promo; ?>" >
+        <input type="number" class="form-control" id="harga_promo" name="harga_promo"  value="<?php echo $harga_promo; ?>" >
+    </div>
+
+    <div class="form-group">
+        <label for="status_produk">Status Produk:</label>
+        <select class="form-control" id="status_produk" name="status_produk">
+            <option value="">Pilih</option>
+            <option value="Tersedia"<?php echo ($status_produk == "Tersedia") ? "selected" : ""; ?>>Tersedia</option>
+            <option value="Habis"<?php echo ($status_produk == "Habis") ? "selected" : ""; ?>>Habis</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Edit</button>
 </form>

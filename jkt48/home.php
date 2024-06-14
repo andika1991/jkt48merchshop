@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <?php
         include 'koneksi.php';
 
-        $query = "SELECT * FROM produk WHERE promo = 'Aktif'";
+        $query = "SELECT * FROM produk WHERE promo = 'Aktif' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
 
         function format_rupiah($angka){
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Pakaian</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Pakaian'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Pakaian' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Aksesoris</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Aksesoris'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Aksesoris'AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Koleksi</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Koleksi'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Koleksi' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -675,7 +675,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Elektronik</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Elektronik'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Elektronik' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Pernak-Pernik</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Pernak-Pernik'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Pernak-Pernik' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -742,7 +742,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Rumah Tangga</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Rumah tangga'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Rumah tangga' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Musik</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Musik'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Musik' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 
@@ -807,7 +807,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4 style="font-weight:bold;text-align:left;">Perlengkapan sekolah</h4>
 
         <?php
-        $query = "SELECT * FROM produk WHERE kategori_produk = 'Perlengkapan sekolah'";
+        $query = "SELECT * FROM produk WHERE kategori_produk = 'Perlengkapan sekolah' AND status_produk='Tersedia'";
         $result = mysqli_query($conn, $query);
         ?>
 

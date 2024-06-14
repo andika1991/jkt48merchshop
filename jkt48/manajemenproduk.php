@@ -200,6 +200,7 @@ include 'session.php';
                         <th>Promo</th>
                         <th>Harga Normal</th>
                         <th>Harga Promo</th>
+                        <th>Status Produk</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -221,6 +222,7 @@ include 'session.php';
                             echo "<td>" . $row["promo"] . "</td>";
                             echo "<td>Rp " . number_format($row["harga_normal"], 0, ',', '.') . "</td>";
                             echo "<td>Rp " . number_format($row["harga_promo"], 0, ',', '.') . "</td>";
+                            echo "<td>" . $row["status_produk"] . "</td>";
                             
                             echo "<td>
                             <a href='editproduk.php?id=" . $row["id_produk"] . "' class='btn btn-primary btn-sm btn-edit'>Edit</a>

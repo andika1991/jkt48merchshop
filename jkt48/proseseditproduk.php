@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $promo = $_POST['promo'];
     $harga_normal = $_POST['harga_normal'];
     $harga_promo = $_POST['harga_promo'];
-    
+    $status_produk =$_POST['status_produk'];
  
     $file_name = '';
 
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     $query = "UPDATE produk 
               SET nama_produk='$nama_produk', deskripsi_produk='$deskripsi_produk', kategori_produk='$kategori_produk', 
-                  promo='$promo', harga_normal='$harga_normal', harga_promo='$harga_promo'";
+                  promo='$promo', harga_normal='$harga_normal', harga_promo='$harga_promo',status_produk='$status_produk'";
 
     
     if ($file_name !== '') {
