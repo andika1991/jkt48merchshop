@@ -264,15 +264,16 @@ main {
 
 
 .profil {
+    margin-top:30px;
     padding:20px;
     width: 450px;
     height:350px;
-    margin: 20px; /* Add margin for some spacing around the profile card */
+    margin: 20px; 
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
-    text-align: center; /* Ensure text is left-aligned */
-    position: relative; /* Make the position relative to control its exact placement */
+    text-align: center; 
+    position: relative;
 }
 
 .profil h2 {
@@ -429,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 ?>
 
-<h3 style="position:absolute;margin-top:-350px;margin-left:680px; font-weight:bold;">Riwayat Pesanan</h3>
+<h3 style="position:absolute;margin-top:-350px;margin-left:780px; font-weight:bold;">Riwayat Pesanan</h3>
 <div class="order-status">
         <a href="riwayatblmbayar.php">
             <img src="asset/blmbayar.png" alt="Belum Bayar">

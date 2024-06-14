@@ -235,7 +235,7 @@ $result_expired = mysqli_query($conn, $query_check_expired);
                     echo "<option value='Diproses'" . ($row["status_pesanan"] == "Diproses" ? " selected" : "") . ">Diproses</option>";
                     echo "<option value='Dikirim'" . ($row["status_pesanan"] == "Dikirim" ? " selected" : "") . ">Dikirim</option>";
                     echo "<option value='Diterima Pelanggan'" . ($row["status_pesanan"] == "Diterima Pelanggan" ? " selected" : "") . ">Diterima Pelanggan</option>";
-                    echo "<option value='Cenceled'" . ($row["status_pesanan"] == "Cenceled" ? " selected" : "") . ">Cenceled</option>";
+                    echo "<option value='Cencelled'" . ($row["status_pesanan"] == "Cencelled" ? " selected" : "") . ">Cencelled</option>";
                     echo "<option value='Expired'" . ($row["status_pesanan"] == "Expired" ? " selected" : "") . ">Expired</option>";
                     echo "</select>";
                     echo "</td>";

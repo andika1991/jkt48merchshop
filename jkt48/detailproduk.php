@@ -8,7 +8,6 @@ include 'session_user.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -486,59 +485,72 @@ h5 {
 .btn-back:hover {
     background-color: #0056b3;
 }
+.ulasan-container {
+    margin: 20px;
+}
 
+.ulasan-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    gap: 10px;
+}
+
+.ulasan-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+}
+
+.ulasan-card p {
+    margin: 5px 0;
+}
 
     </style>
 </head>
 <body>
-<header>
+    <header>
         <div class="logo">
             <img src="img/jkt48.jpg" alt="JKT48MERCH Logo">
         </div>
         <nav>
-
     <ul>
-
-    <li>
-    <input type="text" id="search" placeholder="Cari produk...">
-                </li>
-                
-        <div id="search-results" class="search-results"></div>
-    
-
         <li><a href="#" class="kategori-trigger">Kategori Barang</a>
-        <ul class="submenu">
-    <li><a href="Pakaian.php"><i class="fas fa-tshirt"></i> Pakaian</a></li>
-    <li><a href="Aksesoris.php"><i class="fas fa-ring"></i> Aksesoris</a></li>
-    <li><a href="koleksi.php"><i class="fas fa-gem"></i> Koleksi</a></li>
-    <li><a href="elektronik.php"><i class="fas fa-laptop"></i> Elektronik</a></li>
-    <li><a href="pernakpernik.php"><i class="fas fa-shopping-basket"></i> Pernak-Pernik</a></li>
-    <li><a href="rumahtangga.php"><i class="fas fa-home"></i> Rumah Tangga</a></li>
-    <li><a href="musik.php"><i class="fas fa-music"></i> Musik</a></li>
-    <li><a href="Perlengkapansekolah.php"><i class="fas fa-school"></i> Perlengkapan Sekolah</a></li>
-    <li><a href="lainnya.php"><i class="fas fa-ellipsis-h"></i> Lainnya</a></li>
-</ul>
-
+            <ul class="submenu">
+                <li><a href="subkategori1.php">Pakaian</a></li>
+                <li><a href="subkategori2.php">Musik</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+                <li><a href="subkategori1.php">Subkategori 1</a></li>
+            </ul>
         </li>
         <li><a href="keranjang.php"><i class="bi bi-cart-dash"></i>Keranjang</a></li>
         <?php
     
         if (isset($_SESSION['username'])) {
-          
+            
             $username = $_SESSION['username'];
             echo "<li><a href='akun.php' class='login'><img src='img/Group.jpg' alt='User Icon'> $username</a></li>";
-           
+            
         } else {
-          
-            echo "<li><a href='loginuser.php' class='login'><i class='fas fa-sign-in-alt'></i>  Login</a></li>";
-            echo "<li><a href='daftar.php'><i class='fas fa-user-plus'></i>Daftar</a></li>";
+            // Jika pengguna belum login, tampilkan opsi login dan daftar
+            echo "<li><a href='login.php' class='login'><i class='fas fa-lock'></i> Login</a></li>";
+            echo "<li><a href='daftar.php'>Daftar</a></li>";
         }
         ?>
-
-
-
     </ul>
-
 </nav>
 
 <script>
@@ -550,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submenu.classList.toggle('active');
     });
 
-  
+    // Menyembunyikan submenu saat kategori barang tidak diklik
     document.addEventListener('click', function(event) {
         if (!kategoriTrigger.contains(event.target)) {
             submenu.classList.remove('active');
@@ -575,7 +587,7 @@ $result = mysqli_query($conn, $query);
 
 
 if ($row = mysqli_fetch_assoc($result)) {
-    $kategori_produk=$row['kategori_produk'];
+
     function format_rupiah($angka){
         $rupiah = "Rp " . number_format($angka,0,',','.');
         return $rupiah;
@@ -599,8 +611,64 @@ if ($row = mysqli_fetch_assoc($result)) {
     <a href="belisekarang.php?id_produk=<?php echo $row['id_produk']; ?>" class="btn">Beli Sekarang</a>
     <a href="tambah_kekeranjang.php?id_produk=<?php echo $row['id_produk']; }?>" class="btn">Tambahkan Ke Keranjang</a>
 </div>
-</main>
 
+<?php
+$query = "
+    SELECT penilaian.*, pengguna.username
+    FROM penilaian 
+    JOIN pengguna ON penilaian.id_pengguna = pengguna.id_pengguna 
+    WHERE penilaian.id_produk = $id_produk";
+$result = mysqli_query($conn, $query);
+?>
+
+<div class="ulasan-container">
+    <h3>Ulasan Produk</h3>
+    <div class="ulasan-wrapper">
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <div class="ulasan-card">
+                <p><strong><?php echo $row['username']; ?></strong></p>
+                <p><?php echo $row['penilaian']; ?> ★</p>
+                <p><?php echo $row['komentar']; ?></p>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<script>document.addEventListener('DOMContentLoaded', function() {
+    const wrapper = document.querySelector('.ulasan-wrapper');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    wrapper.addEventListener('mousedown', (e) => {
+        isDown = true;
+        wrapper.classList.add('active');
+        startX = e.pageX - wrapper.offsetLeft;
+        scrollLeft = wrapper.scrollLeft;
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+        isDown = false;
+        wrapper.classList.remove('active');
+    });
+
+    wrapper.addEventListener('mouseup', () => {
+        isDown = false;
+        wrapper.classList.remove('active');
+    });
+
+    wrapper.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = (x - startX) * 3; // Scroll-fast
+        wrapper.scrollLeft = scrollLeft - walk;
+    });
+});
+</script>
+
+
+
+</main>
     <footer class="footer-container">
         <div class="gambarfooter">
             <img src="img/jkt482.svg" alt="JKT48 Image 1">
@@ -664,87 +732,5 @@ if ($row = mysqli_fetch_assoc($result)) {
 
     </footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-BNL0l6+xgpwpgGUdO/0glj3e/Cv8yTpHPn4I72n9xZ4r7jvRkfltpBb1jQb+tzxf" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#search').on('keyup', function() {
-            var query = $(this).val();
-            if (query.length > 0) {
-                $.ajax({
-                    url: 'search.php',
-                    method: 'GET',
-                    data: { q: query },
-                    success: function(data) {
-                        $('#search-results').html(data).show();
-                    }
-                });
-            } else {
-                $('#search-results').hide();
-            }
-        });
-
-        $(document).click(function(event) {
-            if (!$(event.target).closest('#search, #search-results').length) {
-                $('#search-results').hide();
-            }
-        });
-    });
-</script>
-
-<script>
-        function scrollCards(direction, category) {
-            const container = document.getElementById(`card-container-${category}`);
-            const scrollAmount = 300;
-            if (direction === 'prev') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else if (direction === 'next') {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-            updateButtons(category);
-        }
-
-        function updateButtons(category) {
-            const container = document.getElementById(`card-container-${category}`);
-            const btnPrev = document.getElementById(`btn-prev-${category}`);
-            const btnNext = document.getElementById(`btn-next-${category}`);
-            const maxScrollLeft = container.scrollWidth - container.clientWidth;
-
-            btnPrev.disabled = container.scrollLeft === 0;
-            btnNext.disabled = container.scrollLeft >= maxScrollLeft;
-        }
-
-        document.getElementById('card-container-promo').addEventListener('scroll', () => updateButtons('promo'));
-        document.getElementById('card-container-pakaian').addEventListener('scroll', () => updateButtons('pakaian'));
-        document.getElementById('card-container-aksesoris').addEventListener('scroll', () => updateButtons('aksesoris'));
-        document.getElementById('card-container-Koleksi').addEventListener('scroll', () => updateButtons('Koleksi'));
-        document.getElementById('card-container-Elektronik').addEventListener('scroll', () => updateButtons('Elektronik'));
-        document.getElementById('card-container-Pernak-Pernik').addEventListener('scroll', () => updateButtons('Pernak-Pernik'));
-        document.getElementById('card-container-Rumahtangga').addEventListener('scroll', () => updateButtons('Rumahtangga'));
-        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Musik'));
-        document.getElementById('card-container-Musik').addEventListener('scroll', () => updateButtons('Perlengkapansekolah'));
-        window.addEventListener('load', () => {
-            updateButtons('promo');
-            updateButtons('pakaian');
-            updateButtons('aksesoris');
-            updateButtons('Koleksi');
-            updateButtons('Elektronik');
-            updateButtons('Pernak-Pernik'); 
-            updateButtons('Rumahtangga');
-            updateButtons('Musik');
-            updateButtons('Perlengkapansekolah');
-        });
-    </script>
 
 </html>

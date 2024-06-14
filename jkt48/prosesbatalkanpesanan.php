@@ -6,7 +6,7 @@ $invoice_id = intval($_GET['invoice_id']);
 
 if ($invoice_id > 0) {
 
-    $query = "UPDATE pesanan SET status_pesanan = 'Cancelled' WHERE id_pesanan = ?";
+    $query = "UPDATE pesanan SET status_pesanan = 'Cencelled' WHERE id_pesanan = ?";
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {

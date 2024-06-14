@@ -748,7 +748,7 @@ if ($total_harga < 100000) {
 $total_pembayaran = $total_harga + $biaya_ongkir;
 ?>
 
-<h2>Detail Pembelian Produk</h2>
+<h2 style="text-align:center;font-weight:bold;">Detail Pembelian Produk</h2>
 <table>
     <tr>
         <th>Gambar</th>

@@ -487,17 +487,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </header>
     <main>
-        <!-- Carousel Banner -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="img/Group 2.jpg" alt="First slide">
+                    <img class="d-block w-100" src="asset/jkt48BANNER.png" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="asset/jkt48BANNER.png" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="img/Group 2.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="asset/jkt48BANNER.png" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -509,7 +508,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
       
 
         <?php

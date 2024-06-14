@@ -771,7 +771,7 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
 <div>
     <h2>Detail Pengiriman</h2>
     <p>Nama Penerima: <?php echo $namapenerima ?></p>
-    <p>Alamat Penerima: <?php echo $alamatpenerima ?></p>
+  
 </div>
 
 <div>
@@ -858,10 +858,20 @@ function generateInvoiceID($conn) {
         echo "Error: " . $query_insert . "<br>" . mysqli_error($conn);
     }
 
- 
+    $query_select = "SELECT * FROM pesanan WHERE invoice_id = '$invoice_id'";
   
-   
+    $result = mysqli_query($conn, $query_select);
+    $pesanan = mysqli_fetch_assoc($result);
 
+    $invoice_id = $pesanan['invoice_id'];
+    $timeorder = $pesanan['timeorder'];
+    $total_harga = $pesanan['total_harga'];
+    $status_pesanan = $pesanan['status_pesanan'];
+    $id_pengguna = $pesanan['id_pengguna'];
+    $id_datacheckout = $pesanan['id_datacheckout'];
+    $id_detail = $pesanan['id_detail'];
+    $id_metodepembayaran = $pesanan['id_metodepembayaran'];
+    $expired = $pesanan['expired'];
 
 ?>
  <h2>Upload Bukti Pembayaran</h2>
@@ -878,7 +888,11 @@ function generateInvoiceID($conn) {
             <input type="submit" value="Upload" name="submit">
         </form>
     </div>
-
+    <div class="invoiceid" style="margin-left:1100px;margin-top:-500px; position:absolute;">
+    <p>Invoice ID: <?php echo $invoice_id ?></p>
+    <p>Batas Pembayaran: <?php echo $expired ?></p>
+    </div>
+   
     <script>
         function showUploadForm() {
             var uploadForm = document.getElementById("uploadForm");

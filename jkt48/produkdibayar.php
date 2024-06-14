@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
    <div style="text-align:center; margin-top:20px;">
        <a href="home.php" style="display:inline-block; text-decoration:none; background-color:#4CAF50; color:white; padding:10px 20px; border-radius:5px; margin:10px;">Belanja Lagi</a><br>
-       <a href="pesanandiproses.php" style="display:inline-block; text-decoration:none; background-color:#4CAF50; color:white; padding:10px 20px; border-radius:5px; margin:10px;">Cek Lacak Pesananmu</a>
+       <a href="riwayatdiproses.php" style="display:inline-block; text-decoration:none; background-color:#4CAF50; color:white; padding:10px 20px; border-radius:5px; margin:10px;">Cek Lacak Pesananmu</a>
    </div>
 </main>
 

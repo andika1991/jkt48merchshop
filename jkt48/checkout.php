@@ -334,12 +334,24 @@ form {
 
         input[type="textarea"] ,input[type="text"]  {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
             resize: vertical;
+            rows: 6;
         }
+
+        textarea, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    
+    rows: 6; 
+}
 
     </style>
 </head>
@@ -462,7 +474,7 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
 ?>
 
 
-    <h2>Checkout Produk</h2>
+    <h2 style="margin-top:30px;margin-bottom:30px;font-weight:bold;text-align:center;">Checkout Produk</h2>
     <table>
         <tr>
             <th>Gambar</th>
@@ -488,12 +500,13 @@ $total_pembayaran = $total_harga + $biaya_ongkir;
         <p>Total Pembayaran: <?php echo format_rupiah($total_pembayaran); ?></p>
     </div>
 <div>
-    <h4>Form Checkout</h4>
+    <h4 style="font-weight:bold;">Form Pengisian Alamat</h4>
+    <p>Pastikan isi dengan benar agar barang sampai tujuan</p>
     <form action="proses_checkout.php" method="post">
         <label for="nama">Nama Penerima</label>
         <input type="text" class="form-control" id="nama" name="nama" required>
         <label for="alamat">Alamat Lengkap :</label>
-        <textarea id="alamat" name="alamat" class="form" required></textarea>
+        <textarea id="alamat" name="alamat" class="form" placeholder="Isikan dengan lengkap contoh:Jln Raden Intan No 636 Kompleks Masjid Alhuda,Desa Wonodadi Kec Gadingrejo,Kab Pringsewu,35372" required></textarea>
         <?php
         mysqli_data_seek($result, 0);
         while ($row = mysqli_fetch_assoc($result)) { ?>

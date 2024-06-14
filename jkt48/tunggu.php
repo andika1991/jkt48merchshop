@@ -739,6 +739,9 @@ if (isset($_GET['id_datacheckout']) && isset($_GET['invoice_id']) ) {
     }
 
     $total_pembayaran = $total_harga + $biaya_ongkir; 
+
+    
+ 
 ?>
 
 <h2>Detail Pembelian Produk</h2>
@@ -781,6 +784,8 @@ if (isset($_GET['id_datacheckout']) && isset($_GET['invoice_id']) ) {
     $result_status_pesanan = mysqli_query($conn, $query_status_pesanan);
     
     while ($row_status = mysqli_fetch_assoc($result_status_pesanan)) {
+  
+        
         // Periksa status pembayaran sebelum output
         if ($row_status["status_pesanan"] == 'Diproses') {
             echo "<script type='text/javascript'>
@@ -796,7 +801,28 @@ if (isset($_GET['id_datacheckout']) && isset($_GET['invoice_id']) ) {
 } else {
     echo "Data tidak lengkap.";
 }
+
+
+$query_select = "SELECT * FROM pesanan WHERE invoice_id = '$invoice_id'";
+  
+$result = mysqli_query($conn, $query_select);
+$pesanan = mysqli_fetch_assoc($result);
+
+$invoice_id = $pesanan['invoice_id'];
+$timeorder = $pesanan['timeorder'];
+$total_harga = $pesanan['total_harga'];
+$status_pesanan = $pesanan['status_pesanan'];
+$id_pengguna = $pesanan['id_pengguna'];
+$id_datacheckout = $pesanan['id_datacheckout'];
+$id_detail = $pesanan['id_detail'];
+$id_metodepembayaran = $pesanan['id_metodepembayaran'];
+$expired = $pesanan['expired'];
 ?>
+
+<div class="invoiceid" style="margin-top:0px;text-align:center;">
+    <p>Invoice ID: <?php echo $invoice_id ?></p>
+    <p>Status Pesanan: <?php echo $status_pesanan ?></p>
+    </div>
 </main>
 
 
